@@ -8,7 +8,7 @@ This project is in early development. Current progress:
 
 Completed
 [X] XenonRecomp integration for PowerPC → C++ translation
-
+[[]]
 In Progress
 [] XenosRecomp integration for Xenos → HLSL shader conversion
 []  Cross-platform build system (Windows, Linux, macOS)

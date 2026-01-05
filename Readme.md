@@ -4,6 +4,30 @@
  </p>
 Recompiled port of Test Drive Unlimited (TDU) 2006 XBOX 360. 
 
+This project is in early development. Current progress:
+
+Completed
+[X] XenonRecomp integration for PowerPC → C++ translation
+
+In Progress
+[] XenosRecomp integration for Xenos → HLSL shader conversion
+[]  Cross-platform build system (Windows, Linux, macOS)
+[]  Installer wizard with ISO/folder/XContent support
+[]  Shader extraction pipeline (Twilight FXC → Xbox 360 → platform-native)
+[]  Platform-specific install directory support
+ []Twilight engine structure reverse engineering
+ []TGPU/rendering pipeline implementation
+[]T Game-specific patches and fixes
+[] Audio system implementation (XMA decoder, SDL2 driver)
+[] Save data handling (full save system with GTA IV format support)
+[] Input remapping for GTA IV controls (SDL HID driver, GTA4 input patches)
+[] Network/multiplayer stubs (NetDll_XNetStartup, XLive stubs)
+[] Online multiplayer via GameNetworkingSockets (P2P with NAT traversal, no VPN required)
+[] File system and RPF archive handling (VFS)
+ 
+Completed (Previously TODO)
+
+
 ## Why we should work on it?
 I have a wish to return the amazing moments, when we was young.
 When I was a child it was one of my favourite games, but when I hadn't been enough competent in PC, due to I hadn't played online mode,

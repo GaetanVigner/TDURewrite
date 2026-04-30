@@ -1,6 +1,6 @@
 ## Test Drive Unlimited Recomp (TDUR)
 <p align="center">
-<img src="https://raw.githubusercontent.com/testdriveupgrade/TDU_rev/refs/heads/main/tdur2.jpg" width="512"/>
+<img src="tdur2.jpg" width="512"/>
  </p>
 Recompiled port of Test Drive Unlimited (TDU) 2006 XBOX 360. 
 

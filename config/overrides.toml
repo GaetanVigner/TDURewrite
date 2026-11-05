@@ -5,3 +5,23 @@
 0x824522E8 = {}
 0x826BEB38 = {}
 0x826C1D40 = {}
+
+# The video player's Bink wrapper, called for each video frame: tdu_video_frame (src/video_pacing.cpp) keeps the
+# vertical blanks at 60 a second while a video plays (the player advances a frame a presented frame).
+[[midasm_hook]]
+address = 0x82626F08
+name = "tdu_video_frame"
+registers = []
+after_instruction = false
+
+[[midasm_hook]]
+address = 0x82626FA0
+name = "tdu_video_frame"
+registers = []
+after_instruction = false
+
+[[midasm_hook]]
+address = 0x82626FB0
+name = "tdu_video_frame"
+registers = []
+after_instruction = false

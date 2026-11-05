@@ -15,6 +15,7 @@ set(TDU_SOURCES
     src/main.cpp
     src/any360_graphics.cpp
     src/input_lock.cpp
+    src/video_pacing.cpp
 )
 
 if(WIN32)

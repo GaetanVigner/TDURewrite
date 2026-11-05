@@ -16,6 +16,9 @@ REXCVAR_DEFINE_STRING(any360_gpu_device, "", "GPU", "Any360: a substring of the 
 REXCVAR_DEFINE_STRING(any360_gpu_pipeline_cache, "any360_pipelines.bin", "GPU",
                       "Any360: the file pipelines are kept in across runs (empty: none)");
 REXCVAR_DEFINE_INT32(any360_gpu_msaa, 1, "GPU", "Any360: host MSAA, samples a pixel (1, 2, 4, 8)");
+REXCVAR_DEFINE_BOOL(any360_gpu_async_pipelines, true, "GPU",
+                    "Any360: pipelines compiled on threads of their own (a draw waits for none, so a scene seen the first "
+                    "time shows its objects a moment late; off: the frame waits, a stutter instead)");
 REXCVAR_DEFINE_INT32(any360_gpu_scale, 1, "GPU", "Any360: render targets at this many host pixels a guest pixel (1-4)");
 REXCVAR_DEFINE_STRING(any360_gpu_capture, "", "GPU",
                       "Any360: a capture file for gfx_replay, recorded when <file>.go appears (empty: none)");
@@ -33,6 +36,7 @@ void StartAny360GraphicsIfAsked() {
   any360::host::rexglue::GraphicsOptions options;
   options.gpu = REXCVAR_GET(any360_gpu_device);
   options.pipeline_cache_path = REXCVAR_GET(any360_gpu_pipeline_cache);
+  options.async_pipelines = REXCVAR_GET(any360_gpu_async_pipelines);
   options.msaa_samples = uint32_t(std::clamp(REXCVAR_GET(any360_gpu_msaa), 1, 8));
   options.resolution_scale = uint32_t(std::clamp(REXCVAR_GET(any360_gpu_scale), 1, 4));
   options.vblank_hz = double(REXCVAR_GET(any360_gpu_vblank_hz));

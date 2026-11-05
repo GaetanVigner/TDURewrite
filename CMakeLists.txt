@@ -44,3 +44,12 @@ if(TDU_ASAN)
   endforeach()
   target_link_options(tdu PRIVATE -fsanitize=address)
 endif()
+
+# Line tables for Any360's code and a PDB for the executable (the recompiled title's line tables come from
+# REXGLUE_RECOMP_DEBUG_INFO): profiles (any360_gpu_profile) symbolized with llvm-symbolizer.
+foreach(_any360_target any360_gfx any360_gfx_vulkan any360_host_rexglue any360_sys any360_xenos_shader)
+  if(TARGET ${_any360_target})
+    target_compile_options(${_any360_target} PRIVATE -gline-tables-only -gcodeview)
+  endif()
+endforeach()
+target_link_options(tdu PRIVATE "-Wl,/DEBUG")

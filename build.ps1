@@ -4,7 +4,8 @@ param(
     [string]$Sdk = 'F:\Crackdown\crackdown-xbox360-recompiled\tools\rexglue\win-amd64',
     [string]$Config = 'Release',
     [string]$BuildDir = 'out\build',
-    [string]$Any360 = 'F:\Crackdown\any360'
+    [string]$Any360 = 'F:\Crackdown\any360',
+    [switch]$Asan  # AddressSanitizer over Any360 and the glue (use another -BuildDir)
 )
 $ErrorActionPreference = 'Stop'
 $root = $PSScriptRoot
@@ -26,7 +27,7 @@ $build = Join-Path $root $BuildDir
     "-DCMAKE_C_COMPILER:FILEPATH=$(Join-Path $llvm 'clang.exe')" `
     "-DCMAKE_LINKER:FILEPATH=$(Join-Path $llvm 'lld-link.exe')" `
     "-DCMAKE_MAKE_PROGRAM:FILEPATH=$ninja" "-DCMAKE_PREFIX_PATH=$Sdk" `
-    "-DANY360_REFERENCE_SDK=$Sdk" "-DTDU_ANY360_DIR=$Any360"
+    "-DANY360_REFERENCE_SDK=$Sdk" "-DTDU_ANY360_DIR=$Any360" "-DTDU_ASAN=$(if ($Asan) { 'ON' } else { 'OFF' })"
 if ($LASTEXITCODE) { throw "CMake configure failed ($LASTEXITCODE)" }
 & $cmake --build $build
 if ($LASTEXITCODE) { throw "Build failed ($LASTEXITCODE)" }

@@ -4,4 +4,4 @@
 /out/
 /tools/rexglue/
 codegen.log
-build.log
+build*.log

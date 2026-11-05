@@ -1,34 +1,24 @@
-cmake_minimum_required (VERSION 3.20)
+# tdu - ReXGlue Recompiled Project
+#
+# SDK boilerplate lives in generated/rexglue.cmake.
 
-if(NOT DEFINED ENV{VCPKG_ROOT})
-    message(FATAL_ERROR "VCPKG_ROOT is not defined!")
-endif()
+cmake_minimum_required(VERSION 3.25)
+project(tdu LANGUAGES CXX)
 
-include($ENV{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake)
-set(REBLUE_THIRDPARTY_ROOT ${CMAKE_SOURCE_DIR}/thirdparty)
-set(REBLUE_TOOLS_ROOT ${CMAKE_SOURCE_DIR}/tools)
-set(QUICKBMS_EXECUTABLE "${REBLUE_TOOLS_ROOT}/quickbms/quickbms.exe") 
-set(QUICKBMS_URL "https://aluigi.altervista.org/papers/quickbms.zip")
+set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-set(CMAKE_CXX_STANDARD 20)
-set(BUILD_SHARED_LIBS OFF)
+include(generated/rexglue.cmake)
 
-# Enable Hot Reload for MSVC compilers if supported.
-if (POLICY CMP0141)
-  cmake_policy(SET CMP0141 NEW)
-  set(CMAKE_MSVC_DEBUG_INFORMATION_FORMAT "$<IF:$<AND:$<C_COMPILER_ID:MSVC>,$<CXX_COMPILER_ID:MSVC>>,$<$<CONFIG:Debug,RelWithDebInfo>:EditAndContinue>,$<$<CONFIG:Debug,RelWithDebInfo>:ProgramDatabase>>")
-endif()
-
-set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
-
-# Target Sandy Bridge for all projects
-add_compile_options(
-    -march=sandybridge
+# Sources
+set(TDU_SOURCES
+    src/main.cpp
 )
 
-project("reblue-all")
+if(WIN32)
+    add_executable(tdu WIN32 ${TDU_SOURCES})
+else()
+    add_executable(tdu ${TDU_SOURCES})
+endif()
 
-add_subdirectory(${REBLUE_THIRDPARTY_ROOT})
-add_subdirectory(${REBLUE_TOOLS_ROOT})
-add_subdirectory("rebluelib")
-add_subdirectory("reblue")
+rexglue_setup_target(tdu)

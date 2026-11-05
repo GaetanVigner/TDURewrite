@@ -1,0 +1,7 @@
+# Manual analysis fixes for Test Drive Unlimited (default.xex).
+
+[functions]
+# Branch targets the analyzer does not reach.
+0x824522E8 = {}
+0x826BEB38 = {}
+0x826C1D40 = {}

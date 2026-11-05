@@ -17,6 +17,9 @@ REXCVAR_DEFINE_STRING(any360_gpu_pipeline_cache, "any360_pipelines.bin", "GPU",
                       "Any360: the file pipelines are kept in across runs (empty: none)");
 REXCVAR_DEFINE_INT32(any360_gpu_msaa, 1, "GPU", "Any360: host MSAA, samples a pixel (1, 2, 4, 8)");
 REXCVAR_DEFINE_INT32(any360_gpu_scale, 1, "GPU", "Any360: render targets at this many host pixels a guest pixel (1-4)");
+REXCVAR_DEFINE_STRING(any360_gpu_capture, "", "GPU",
+                      "Any360: a capture file for gfx_replay, recorded when <file>.go appears (empty: none)");
+REXCVAR_DEFINE_INT32(any360_gpu_capture_kicks, 60, "GPU", "Any360: ring kicks a capture records");
 REXCVAR_DEFINE_INT32(any360_gpu_vblank_hz, 0, "GPU",
                      "Any360: vertical blank interrupts a second (0: 60 with vsync, 1000 without)");
 
@@ -33,6 +36,8 @@ void StartAny360GraphicsIfAsked() {
   options.msaa_samples = uint32_t(std::clamp(REXCVAR_GET(any360_gpu_msaa), 1, 8));
   options.resolution_scale = uint32_t(std::clamp(REXCVAR_GET(any360_gpu_scale), 1, 4));
   options.vblank_hz = double(REXCVAR_GET(any360_gpu_vblank_hz));
+  options.capture_path = REXCVAR_GET(any360_gpu_capture);
+  options.capture_kicks = uint32_t(std::max(1, REXCVAR_GET(any360_gpu_capture_kicks)));
   options.log = [](const std::string& line) { REXLOG_INFO("{}", line); };
   std::string error;
   if (any360::host::rexglue::StartGraphics(options, error)) {

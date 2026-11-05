@@ -13,6 +13,7 @@ include(generated/rexglue.cmake)
 # Sources
 set(TDU_SOURCES
     src/main.cpp
+    src/any360_graphics.cpp
 )
 
 if(WIN32)
@@ -22,3 +23,9 @@ else()
 endif()
 
 rexglue_setup_target(tdu)
+
+# Any360 (github.com/GaetanVigner/Any360): its layers built from its checkout with this toolchain; the GPU goes
+# through them with --any360_gpu=true (src/any360_graphics.cpp).
+set(TDU_ANY360_DIR "${CMAKE_CURRENT_SOURCE_DIR}/../Any360" CACHE PATH "Any360 checkout")
+add_subdirectory("${TDU_ANY360_DIR}/layer/sys" any360 EXCLUDE_FROM_ALL)
+target_link_libraries(tdu PRIVATE any360_host_rexglue)

@@ -1,8 +1,10 @@
-# Builds tdu.exe (Release) into out\build with Visual Studio's Clang, against the ReXGlue SDK install given by -Sdk.
+# Builds tdu.exe (Release) into out\build with Visual Studio's Clang, against the ReXGlue SDK install given by -Sdk
+# and the Any360 checkout given by -Any360.
 param(
     [string]$Sdk = 'F:\Crackdown\crackdown-xbox360-recompiled\tools\rexglue\win-amd64',
     [string]$Config = 'Release',
-    [string]$BuildDir = 'out\build'
+    [string]$BuildDir = 'out\build',
+    [string]$Any360 = 'F:\Crackdown\any360'
 )
 $ErrorActionPreference = 'Stop'
 $root = $PSScriptRoot
@@ -23,7 +25,8 @@ $build = Join-Path $root $BuildDir
     "-DCMAKE_CXX_COMPILER:FILEPATH=$(Join-Path $llvm 'clang++.exe')" `
     "-DCMAKE_C_COMPILER:FILEPATH=$(Join-Path $llvm 'clang.exe')" `
     "-DCMAKE_LINKER:FILEPATH=$(Join-Path $llvm 'lld-link.exe')" `
-    "-DCMAKE_MAKE_PROGRAM:FILEPATH=$ninja" "-DCMAKE_PREFIX_PATH=$Sdk"
+    "-DCMAKE_MAKE_PROGRAM:FILEPATH=$ninja" "-DCMAKE_PREFIX_PATH=$Sdk" `
+    "-DANY360_REFERENCE_SDK=$Sdk" "-DTDU_ANY360_DIR=$Any360"
 if ($LASTEXITCODE) { throw "CMake configure failed ($LASTEXITCODE)" }
 & $cmake --build $build
 if ($LASTEXITCODE) { throw "Build failed ($LASTEXITCODE)" }

@@ -16,7 +16,7 @@ system calls and GPU are provided by the ReXGlue runtime today and, step by step
 |---|---|
 | Recompilation | `default.xex` fully translated (ReXGlue v0.10.0); 53 functions the analyzer misses are declared in [config/](config/) |
 | Boot | reaches the airport intro on the ReXGlue runtime's GPU (Direct3D 12), with sound |
-| Any360 | next: the GPU through `any360::gfx` (Vulkan), as in [Crackdown](https://github.com/GaetanVigner/CrackdownRewrite) and [The Simpsons Game](https://github.com/GaetanVigner/TheSimpsonsGameRewrite) |
+| Any360 | `--any360_gpu=true`: the GPU through `any360::sys` and `any360::gfx` (Vulkan) reaches the title screen; a few draws a frame still fail. Same binding as [Crackdown](https://github.com/GaetanVigner/CrackdownRewrite) and [The Simpsons Game](https://github.com/GaetanVigner/TheSimpsonsGameRewrite) |
 
 ## Building (Windows)
 

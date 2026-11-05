@@ -7,6 +7,8 @@
 
 #include <rex/rex_app.h>
 
+#include "any360_graphics.h"
+
 #ifdef _WIN32
 #include <windows.h>
 #endif
@@ -23,6 +25,9 @@ class TduApp : public rex::ReXApp {
   void OnPreSetup(rex::RuntimeConfig& config) override {
     if (config.gpu_plugin.empty()) config.gpu_plugin = "xenos";
   }
+
+  // Any360's GPU, when asked, before the title's first Vd* call.
+  void OnPostSetup() override { tdu::StartAny360GraphicsIfAsked(); }
 
   // Without --game_data_root: a game folder next to the executable, else the repository's (out/build/tdu.exe).
   void OnConfigurePaths(rex::PathConfig& paths) override {

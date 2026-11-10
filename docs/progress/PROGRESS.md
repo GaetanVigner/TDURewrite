@@ -11,8 +11,9 @@ Generated on 2026-11-10 by [Any360](https://github.com/GaetanVigner/Any360)'s `t
 | System calls on `any360::sys` | 302 | 327 | 92% | all eight groups, opt-in on `master`: `--any360_sys_groups=stateless,files,objects,threads,memory,xam,input,audio`; checked from boot through the intro videos to the title screen (no call reaches ReXGlue's kernel there); driving, saves and sound still to check in game |
 | Graphics on `any360::gfx` (GPU features Any360 handles) | 283 | 323 | 88% | opt-in on `master`: `--any360_gpu=true` (`--any360_gpu_scale=2 --any360_gpu_msaa=4`, `--any360_gpu_vblank_hz=240` for up to 120 FPS); 83-115 FPS driving at 2x with 4x MSAA on an RTX 5070 Ti, against 54-85 for the runtime's GPU at 2x |
 | Host (XEX loader, address space, threads, window, input, audio output) | 0 | 2 | 0% | ReXGlue's host runs the title; Any360 steps 13 and 14 |
-| Game functions rewritten in C++ | 0 | 45,102 | 0% | 0 more verified against the original in the sandbox |
-| Library functions (SDK, middleware) replaced | 0 | 0 | 0% | replaced as units, not decompiled |
+| Game functions rewritten in C++ | 0 | 31,877 | 0% | 0 more verified against the original in the sandbox |
+| Library functions (SDK, middleware) replaced | 0 | 4,864 | 0% | replaced as units, not decompiled |
+| Middleware functions (third-party physics, video) | - | 8,361 | - | kept recompiled or relinked from the vendor's library, not rewritten |
 | Instructions of rewritten functions | 0 | 1,999,820 | 0% | PowerPC instructions of the original |
 
 ## System calls
@@ -384,19 +385,26 @@ What `any360::gfx` handles of the Xbox 360 GPU (the same for every title; a titl
 
 ## Game code
 
-Every function of the executable by module (named address ranges; the rest by 1 MB area until symbol recovery names them). **native**: rewritten: bound to C++. **verified**: checked against the original in the sandbox. **library**: SDK or middleware code, replaced as a unit. **recompiled**: recompiled PowerPC, still to rewrite.
+Every function of the executable by module (named address ranges; the rest by 1 MB area until symbol recovery names them). **native**: rewritten: bound to C++. **verified**: checked against the original in the sandbox. **library**: SDK code, replaced as a unit by Any360. **middleware**: third-party engine code (physics, video): kept or relinked, not rewritten. **recompiled**: recompiled PowerPC, still to rewrite.
 
 | Module | Kind | Functions | Instructions | Native | Verified | Still recompiled | Native share |
 |---|---|---|---|---|---|---|---|
-| code 826xxxxx | game | 6,513 | 267,596 | 0 | 0 | 6,513 | 0% |
+| Havok Physics | middleware | 8,156 | 284,969 | 0 | 0 | 8,156 | 0% |
 | code 82Axxxxx | game | 3,557 | 259,803 | 0 | 0 | 3,557 | 0% |
 | code 828xxxxx | game | 3,084 | 259,750 | 0 | 0 | 3,084 | 0% |
 | code 829xxxxx | game | 3,669 | 259,575 | 0 | 0 | 3,669 | 0% |
 | code 824xxxxx | game | 9,336 | 258,686 | 0 | 0 | 9,336 | 0% |
-| code 827xxxxx | game | 5,534 | 258,193 | 0 | 0 | 5,534 | 0% |
-| code 825xxxxx | game | 7,326 | 257,298 | 0 | 0 | 7,326 | 0% |
-| code 82Bxxxxx | game | 3,188 | 147,299 | 0 | 0 | 3,188 | 0% |
+| code 82Bxxxxx | game | 2,983 | 127,646 | 0 | 0 | 2,983 | 0% |
+| code 827xxxxx | game | 2,193 | 125,507 | 0 | 0 | 2,193 | 0% |
+| code 826xxxxx | game | 2,318 | 103,367 | 0 | 0 | 2,318 | 0% |
+| code 825xxxxx | game | 1,842 | 62,650 | 0 | 0 | 1,842 | 0% |
+| XDK audio (XAudio, XMA) | library | 1,388 | 53,897 | 0 | 0 | 1,388 | 0% |
+| XDK Xbox Live and voice (XOnline, XHV) | library | 956 | 49,754 | 0 | 0 | 956 | 0% |
+| XDK D3D runtime | library | 1,436 | 46,565 | 0 | 0 | 1,436 | 0% |
+| C runtime (CRT) | library | 760 | 45,321 | 0 | 0 | 760 | 0% |
 | code 823xxxxx | game | 2,895 | 31,620 | 0 | 0 | 2,895 | 0% |
+| Bink video | middleware | 205 | 19,653 | 0 | 0 | 205 | 0% |
+| XAPI (Win32 layer over the kernel and XAM) | library | 324 | 11,057 | 0 | 0 | 324 | 0% |
 
 <details><summary>The 0 rewritten functions</summary>
 

@@ -48,32 +48,47 @@ Shared by every title (Any360's own roadmap); the title follows once they land.
 | 15 | graphics through `any360::gfx` only, no `rexgpu-xenos` | partial: three titles draw through `any360::gfx`, the GPU session's plan in [docs/GFX.md](https://github.com/GaetanVigner/Any360/blob/main/docs/GFX.md) |
 | 16 | porting a new title: a converter served from GitHub (as AnyPS5) and built into the cross-platform launcher, from a XEX to a running build with no title-specific code in Any360 | not started |
 
-## 4. Library code replaced as a unit
+## 4. Library and middleware code
 
-No library range is named yet for this title (titles/tdu/modules.json in Any360): the first step is recognising the SDK code (D3D runtime, CRT, audio and video middleware) so it is not decompiled as game code.
+SDK code linked into the executable is not decompiled: Any360 provides the same service natively and the whole range goes.
+
+| Library range | Functions | Instructions | Replaced | Verified in the sandbox | Left |
+|---|---|---|---|---|---|
+| XDK audio (XAudio, XMA) | 1,388 | 53,897 | 0 | 0 | 1,388 |
+| XDK Xbox Live and voice (XOnline, XHV) | 956 | 49,754 | 0 | 0 | 956 |
+| XDK D3D runtime | 1,436 | 46,565 | 0 | 0 | 1,436 |
+| C runtime (CRT) | 760 | 45,321 | 0 | 0 | 760 |
+| XAPI (Win32 layer over the kernel and XAM) | 324 | 11,057 | 0 | 0 | 324 |
+
+Third-party middleware the game links (physics, video) is neither the game's own code nor something Any360 provides. It is not rewritten function by function: it stays recompiled, or is replaced by the vendor's library for the target platform (or an open implementation) once the game's code around it is portable.
+
+| Middleware | Functions | Instructions |
+|---|---|---|
+| Havok Physics | 8,156 | 284,969 |
+| Bink video | 205 | 19,653 |
 
 ## 5. Game code as portable C++
 
-45,102 of 45,102 game functions are still recompiled PowerPC. The list, function by function, is [functions.csv](functions.csv) (state `recompiled` or `verified`). By module, largest first:
+31,877 of 31,877 game functions are still recompiled PowerPC. The list, function by function, is [functions.csv](functions.csv) (state `recompiled` or `verified`). By module, largest first:
 
 | Module | Functions left | Instructions left | Rewritten | Verified |
 |---|---|---|---|---|
 | code 824xxxxx | 9,336 | 258,686 | 0 | 0 |
-| code 825xxxxx | 7,326 | 257,298 | 0 | 0 |
-| code 826xxxxx | 6,513 | 267,596 | 0 | 0 |
-| code 827xxxxx | 5,534 | 258,193 | 0 | 0 |
 | code 829xxxxx | 3,669 | 259,575 | 0 | 0 |
 | code 82Axxxxx | 3,557 | 259,803 | 0 | 0 |
-| code 82Bxxxxx | 3,188 | 147,299 | 0 | 0 |
 | code 828xxxxx | 3,084 | 259,750 | 0 | 0 |
+| code 82Bxxxxx | 2,983 | 127,646 | 0 | 0 |
 | code 823xxxxx | 2,895 | 31,620 | 0 | 0 |
+| code 826xxxxx | 2,318 | 103,367 | 0 | 0 |
+| code 827xxxxx | 2,193 | 125,507 | 0 | 0 |
+| code 825xxxxx | 1,842 | 62,650 | 0 | 0 |
 
 Order of work: symbol recovery and library recognition first (they shrink this list), then leaf functions (no calls: each is checked alone), then their callers, module by module; every rewrite is bound over the recompiled function and proven equal in the guest sandbox before it replaces it (Any360's `pipeline/any360.py <title> select | decompile | bind | verify`).
 
 ## 6. This title
 
 - Check the system binding in game past the title screen: a save loaded, driving, sound, the gamepad and its rumble, a long session; `--any360_sys_trace=true` logs any call that still reaches the runtime.
-- Name the library ranges of the executable (D3D runtime, CRT, Bink, audio middleware) in Any360's titles/tdu/modules.json.
+- Name what is left of the executable's library code: the ranges listed as not named in Any360's titles/tdu/modules.json (code shared with the other titles of unknown purpose, an XML parser, zlib, a JPEG path), then the game's own modules (Eden's ed* libraries carry their names in their strings).
 - A golden test target (guest sandbox) so rewritten functions can be verified.
 
 ## Known problems

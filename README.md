@@ -13,7 +13,7 @@
 | **System calls** | 302 of 327 on `any360::sys` (opt-in) |
 | **Graphics** | `any360::gfx`, a Vulkan renderer handling 283 of 323 Xbox 360 GPU features (opt-in) |
 | **Host** | ReXGlue's loader, threads and window; Any360's own host is not started |
-| **Game code** | 0 of 45,102 functions rewritten in C++ (0%) |
+| **Game code** | 0 of 31,877 functions rewritten in C++ (0%) |
 
 Updated 2026-11-10. Every system call, module and rewritten function: [PROGRESS.md](docs/progress/PROGRESS.md). What is missing, step by step: [ROADMAP.md](docs/progress/ROADMAP.md). Function by function: [functions.csv](docs/progress/functions.csv).
 <!-- progress:end -->
@@ -35,7 +35,7 @@ The picture above is that road: green is what already runs on the project's own 
 | Playable | boots to the title, plays the intro videos at their own speed and drives on the island, with sound and gamepad, on the ReXGlue runtime's GPU (Direct3D 12) or on Any360's |
 | Graphics on Any360 | `--any360_gpu=true` draws the whole game through `any360::gfx` (Vulkan): resolution scale (`--any360_gpu_scale=2`), anti-aliasing (`--any360_gpu_msaa=4`), frame rates above 60 (`--any360_gpu_vblank_hz=240` gives up to 120 FPS). Driving at 2x with 4x MSAA: 83-115 FPS on an RTX 5070 Ti, against 54-85 for the runtime's GPU at 2x. Every Any360 option is a setting |
 | System calls on Any360 | `--any360_sys_groups=stateless,files,objects,threads,memory,xam,input,audio` puts the Xbox system calls on `any360::sys` (files, threads, memory, profile, a native XMA decoder, input), as in [Crackdown](https://github.com/GaetanVigner/CrackdownRewrite) and [The Simpsons Game](https://github.com/GaetanVigner/TheSimpsonsGameRewrite). Checked from boot through the intro videos to the title screen, where no call reaches the ReXGlue kernel any more; driving, saves and sound are still to check. `--any360_sys_trace=true` logs the first call of each kind and any that still goes to the runtime |
-| Game code | recompiled PowerPC throughout; no function rewritten yet |
+| Game code | recompiled PowerPC throughout; no function rewritten yet. Of the 45,102 functions, 4,864 are XDK library code (D3D runtime, audio, Xbox Live, CRT, XAPI) that Any360 replaces as units and 8,361 are middleware (Havok Physics, Bink), which leaves 31,877 of the game's own |
 
 What is missing, in order, with the calls and functions each step needs: [docs/progress/ROADMAP.md](docs/progress/ROADMAP.md).
 

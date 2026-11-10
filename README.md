@@ -1,11 +1,28 @@
 # Test Drive Unlimited Rewrite
 
-<p align="center"><img src="docs/intro.jpg" width="640" alt="Test Drive Unlimited's airport intro, running recompiled on PC"/></p>
+<p align="center">
+<img src="docs/intro.jpg" width="49%" alt="Test Drive Unlimited's airport intro, running recompiled on PC"/>
+<img src="docs/title-any360.jpg" width="49%" alt="The title screen drawn by Any360's Vulkan renderer"/>
+</p>
+
+<!-- progress:begin -->
+[![Test Drive Unlimited: rewrite progress](docs/progress/progress.svg)](docs/progress/PROGRESS.md)
+
+| | Where it stands |
+|---|---|
+| **System calls** | 23 of 327 on `any360::sys`, 279 more ready in Any360 |
+| **Graphics** | `any360::gfx`, a Vulkan renderer handling 283 of 323 Xbox 360 GPU features (opt-in) |
+| **Host** | ReXGlue's loader, threads and window; Any360's own host is not started |
+| **Game code** | 0 of 45,102 functions rewritten in C++ (0%) |
+
+Updated 2026-11-10. Every system call, module and rewritten function: [PROGRESS.md](docs/progress/PROGRESS.md). What is missing, step by step: [ROADMAP.md](docs/progress/ROADMAP.md). Function by function: [functions.csv](docs/progress/functions.csv).
+<!-- progress:end -->
 
 **Test Drive Unlimited (Xbox 360, 2006), statically recompiled to native PC code.** The game's PowerPC executable is
 translated to C++ with [ReXGlue](https://github.com/rexglue/rexglue-sdk) and built as a Windows program; the Xbox 360
 system calls and GPU are provided by the ReXGlue runtime today and, step by step, by
 [Any360](https://github.com/GaetanVigner/Any360), whose goal is a portable native codebase with no emulation layer left.
+The picture above is that road: green is what already runs on the project's own code.
 
 **This repository holds no game data and no game code.** You need your own copy of the game (European disc, title
 494707D4); the recompiled C++ is generated on your machine from your disc's `default.xex`.
@@ -14,9 +31,13 @@ system calls and GPU are provided by the ReXGlue runtime today and, step by step
 
 | | |
 |---|---|
-| Recompilation | `default.xex` fully translated (ReXGlue v0.10.0); 53 functions the analyzer misses are declared in [config/](config/) |
-| Boot | reaches the airport intro on the ReXGlue runtime's GPU (Direct3D 12), with sound |
-| Any360 | `--any360_gpu=true`: the GPU through `any360::sys` and `any360::gfx` (Vulkan) reaches the title screen; a few draws a frame still fail. Same binding as [Crackdown](https://github.com/GaetanVigner/CrackdownRewrite) and [The Simpsons Game](https://github.com/GaetanVigner/TheSimpsonsGameRewrite) |
+| Recompilation | `default.xex` fully translated (ReXGlue v0.10.0): 45,102 functions; 53 the analyzer misses are declared in [config/](config/) |
+| Playable | boots to the title, plays the intro videos at their own speed and drives on the island, with sound and gamepad, on the ReXGlue runtime's GPU (Direct3D 12) or on Any360's |
+| Graphics on Any360 | `--any360_gpu=true` draws the whole game through `any360::gfx` (Vulkan): resolution scale (`--any360_gpu_scale=2`), anti-aliasing (`--any360_gpu_msaa=4`), frame rates above 60 (`--any360_gpu_vblank_hz=240` gives up to 120 FPS). Driving at 2x with 4x MSAA: 83-115 FPS on an RTX 5070 Ti, against 54-85 for the runtime's GPU at 2x. Every Any360 option is a setting |
+| System calls on Any360 | not switched on yet: the title imports 327 calls, Any360 has 302 of them; the next step, as done for [Crackdown](https://github.com/GaetanVigner/CrackdownRewrite) and [The Simpsons Game](https://github.com/GaetanVigner/TheSimpsonsGameRewrite) |
+| Game code | recompiled PowerPC throughout; no function rewritten yet |
+
+What is missing, in order, with the calls and functions each step needs: [docs/progress/ROADMAP.md](docs/progress/ROADMAP.md).
 
 ## Building (Windows)
 

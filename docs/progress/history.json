@@ -1,0 +1,30 @@
+[
+ {
+  "date": "2026-11-10",
+  "system_calls": {
+   "total": 327,
+   "any360": 23,
+   "ready": 279,
+   "runtime": 0,
+   "stub": 25,
+   "missing": 0
+  },
+  "gpu_units": {
+   "total": 323,
+   "native": 283,
+   "bound": true
+  },
+  "functions": {
+   "total": 45102,
+   "native": 0,
+   "verified": 0,
+   "library": 0,
+   "recompiled": 45102
+  },
+  "game_functions": {
+   "total": 45102,
+   "native": 0,
+   "verified": 0
+  }
+ }
+]

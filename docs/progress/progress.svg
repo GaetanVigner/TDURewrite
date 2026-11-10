@@ -1252,16 +1252,17 @@
 <rect x="646.1" y="552.0" width="13.3" height="12.3" fill="#8957e5"/>
 <rect x="604.5" y="565.0" width="13.3" height="12.3" fill="#8957e5"/>
 <rect x="604.5" y="500.2" width="55.5" height="77.7" fill="none" stroke="#0d1117" stroke-width="2"><title>C runtime (CRT): 4 native, 756 library</title></rect>
-<rect x="604.5" y="577.9" width="16.4" height="10.2" fill="#8957e5"/>
-<rect x="621.5" y="577.9" width="16.4" height="10.2" fill="#8957e5"/>
-<rect x="604.5" y="588.7" width="16.4" height="10.2" fill="#8957e5"/>
-<rect x="621.5" y="588.7" width="16.4" height="10.2" fill="#8957e5"/>
-<rect x="604.5" y="599.6" width="16.4" height="10.2" fill="#8957e5"/>
-<rect x="621.5" y="599.6" width="16.4" height="10.2" fill="#8957e5"/>
-<rect x="604.5" y="610.4" width="16.4" height="10.2" fill="#8957e5"/>
-<rect x="621.5" y="610.4" width="16.4" height="10.2" fill="#8957e5"/>
-<rect x="604.5" y="621.2" width="16.4" height="10.2" fill="#8957e5"/>
-<rect x="604.5" y="577.9" width="34.0" height="54.1" fill="none" stroke="#0d1117" stroke-width="2"><title>XAPI (Win32 layer over the kernel and XAM): 324 library</title></rect>
+<rect x="604.5" y="577.9" width="10.7" height="12.9" fill="#2da44e"/>
+<rect x="615.8" y="577.9" width="10.7" height="12.9" fill="#8957e5"/>
+<rect x="627.1" y="577.9" width="10.7" height="12.9" fill="#8957e5"/>
+<rect x="604.5" y="591.4" width="10.7" height="12.9" fill="#8957e5"/>
+<rect x="615.8" y="591.4" width="10.7" height="12.9" fill="#8957e5"/>
+<rect x="627.1" y="591.4" width="10.7" height="12.9" fill="#8957e5"/>
+<rect x="604.5" y="605.0" width="10.7" height="12.9" fill="#8957e5"/>
+<rect x="615.8" y="605.0" width="10.7" height="12.9" fill="#8957e5"/>
+<rect x="627.1" y="605.0" width="10.7" height="12.9" fill="#8957e5"/>
+<rect x="604.5" y="618.5" width="10.7" height="12.9" fill="#8957e5"/>
+<rect x="604.5" y="577.9" width="34.0" height="54.1" fill="none" stroke="#0d1117" stroke-width="2"><title>XAPI (Win32 layer over the kernel and XAM): 1 native, 323 library</title></rect>
 <rect x="638.5" y="577.9" width="10.2" height="17.4" fill="#1b7c83"/>
 <rect x="649.2" y="577.9" width="10.2" height="17.4" fill="#1b7c83"/>
 <rect x="638.5" y="596.0" width="10.2" height="17.4" fill="#1b7c83"/>

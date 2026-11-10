@@ -12,9 +12,9 @@ Generated on 2026-11-10 by [Any360](https://github.com/GaetanVigner/Any360)'s `t
 | Graphics on `any360::gfx` (GPU features Any360 handles) | 283 | 323 | 88% | opt-in on `master`: `--any360_gpu=true` (`--any360_gpu_scale=2 --any360_gpu_msaa=4`, `--any360_gpu_vblank_hz=240` for up to 120 FPS); 83-115 FPS driving at 2x with 4x MSAA on an RTX 5070 Ti, against 54-85 for the runtime's GPU at 2x |
 | Host (XEX loader, address space, threads, window, input, audio output) | 0 | 2 | 0% | ReXGlue's host runs the title; Any360 steps 13 and 14 |
 | Game functions rewritten in C++ | 0 | 31,877 | 0% | 0 more verified against the original in the sandbox |
-| Library functions (SDK, middleware) replaced | 4 | 4,864 | 0.08% | replaced as units, not decompiled |
+| Library functions (SDK, middleware) replaced | 5 | 4,864 | 0.1% | replaced as units, not decompiled |
 | Middleware functions (third-party physics, AI, scripting, video) | - | 8,361 | - | kept recompiled or relinked from the vendor's library, not rewritten |
-| Instructions of rewritten functions | 708 | 1,999,820 | 0.04% | PowerPC instructions of the original |
+| Instructions of rewritten functions | 912 | 1,999,820 | 0.05% | PowerPC instructions of the original |
 
 ## System calls
 
@@ -404,9 +404,9 @@ Every function of the executable by module (named address ranges; the rest by 1 
 | C runtime (CRT) | library | 760 | 45,321 | 4 | 0 | 756 | 0.5% |
 | code 823xxxxx | game | 2,895 | 31,620 | 0 | 0 | 2,895 | 0% |
 | Bink video | middleware | 205 | 19,653 | 0 | 0 | 205 | 0% |
-| XAPI (Win32 layer over the kernel and XAM) | library | 324 | 11,057 | 0 | 0 | 324 | 0% |
+| XAPI (Win32 layer over the kernel and XAM) | library | 324 | 11,057 | 1 | 0 | 323 | 0.3% |
 
-<details><summary>The 4 rewritten functions</summary>
+<details><summary>The 5 rewritten functions</summary>
 
 | Address | Module | Instructions | Handler | File |
 |---|---|---|---|---|
@@ -414,6 +414,7 @@ Every function of the executable by module (named address ranges; the rest by 1 
 | `82645BF0` | C runtime (CRT) | 251 | `CrtMemcpy` | xdk_natives.cpp |
 | `82646010` | C runtime (CRT) | 173 | `CrtCopyForward` | xdk_natives.cpp |
 | `826460C0` | C runtime (CRT) | 176 | `CrtMemset` | xdk_natives.cpp |
+| `82696950` | XAPI (Win32 layer over the kernel and XAM) | 204 | `XMemCpy` | xdk_natives.cpp |
 
 </details>
 

@@ -23729,7 +23729,7 @@ address,module,kind,instructions,state,handler,file
 826966B0,XAPI (Win32 layer over the kernel and XAM),library,89,library,,
 82696818,XAPI (Win32 layer over the kernel and XAM),library,75,library,,
 82696948,XAPI (Win32 layer over the kernel and XAM),library,1,library,,
-82696950,XAPI (Win32 layer over the kernel and XAM),library,204,library,,
+82696950,XAPI (Win32 layer over the kernel and XAM),library,204,native,XMemCpy,xdk_natives.cpp
 82696C88,XAPI (Win32 layer over the kernel and XAM),library,1,library,,
 82696C90,XAPI (Win32 layer over the kernel and XAM),library,134,library,,
 82696EA8,XAPI (Win32 layer over the kernel and XAM),library,15,library,,

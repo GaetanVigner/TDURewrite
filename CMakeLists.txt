@@ -17,6 +17,7 @@ set(TDU_SOURCES
     src/any360_system.cpp
     src/input_lock.cpp
     src/video_pacing.cpp
+    src/xdk_natives.cpp
 )
 
 if(WIN32)

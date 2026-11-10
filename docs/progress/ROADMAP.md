@@ -57,7 +57,7 @@ SDK code linked into the executable is not decompiled: Any360 provides the same 
 | XDK audio (XAudio, XMA) | 1,388 | 53,897 | 0 | 0 | 1,388 |
 | XDK Xbox Live and voice (XOnline, XHV) | 956 | 49,754 | 0 | 0 | 956 |
 | XDK D3D runtime | 1,436 | 46,565 | 0 | 0 | 1,436 |
-| C runtime (CRT) | 760 | 45,321 | 0 | 0 | 760 |
+| C runtime (CRT) | 760 | 45,321 | 3 | 0 | 757 |
 | XAPI (Win32 layer over the kernel and XAM) | 324 | 11,057 | 0 | 0 | 324 |
 
 Third-party middleware the game links (physics, AI, scripting, video and the like) is neither the game's own code nor something Any360 provides. It is not rewritten function by function: it stays recompiled, or is replaced by the vendor's library for the target platform (or an open implementation) once the game's code around it is portable.
@@ -89,7 +89,8 @@ Order of work: symbol recovery and library recognition first (they shrink this l
 
 - Check the system binding in game past the title screen: a save loaded, driving, sound, the gamepad and its rumble, a long session; `--any360_sys_trace=true` logs any call that still reaches the runtime.
 - Name what is left of the executable's library code: the ranges listed as not named in Any360's titles/tdu/modules.json (code shared with the other titles of unknown purpose, an XML parser, zlib, a JPEG path), then the game's own modules (Eden's ed* libraries carry their names in their strings).
-- A golden test target (guest sandbox) so rewritten functions can be verified.
+- More native replacements of library functions (the CRT's string routines next), each checked in game with `--any360_xdk_verify=true`.
+- A golden test target (guest sandbox) so rewritten game functions can be verified.
 
 ## Known problems
 

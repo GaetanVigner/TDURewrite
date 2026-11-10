@@ -21565,9 +21565,9 @@ address,module,kind,instructions,state,handler,file
 82645B30,C runtime (CRT),library,103,library,,
 82645BC8,C runtime (CRT),library,128,library,,
 82645BE0,C runtime (CRT),library,125,library,,
-82645BF0,C runtime (CRT),library,251,library,,
-82646010,C runtime (CRT),library,173,library,,
-826460C0,C runtime (CRT),library,176,library,,
+82645BF0,C runtime (CRT),library,251,native,CrtMemcpy,xdk_natives.cpp
+82646010,C runtime (CRT),library,173,native,CrtCopyForward,xdk_natives.cpp
+826460C0,C runtime (CRT),library,176,native,CrtMemset,xdk_natives.cpp
 82646730,C runtime (CRT),library,10,library,,
 82646734,C runtime (CRT),library,9,library,,
 82646760,C runtime (CRT),library,10,library,,

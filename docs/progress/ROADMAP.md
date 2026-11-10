@@ -4,64 +4,15 @@ Generated on 2026-11-10 with [PROGRESS.md](PROGRESS.md). The rewrite is done whe
 
 ## 1. System calls on any360::sys
 
-23 of 327 imports run on `any360::sys`; 304 do not yet.
+302 of 327 imports run on `any360::sys`; 25 do not yet.
 
 | Group | Calls to switch | Of which Any360 already has | Missing in Any360 |
 |---|---|---|---|
-| stateless | 33 | 33 | 0 |
-| files | 15 | 15 | 0 |
-| objects | 27 | 27 | 0 |
-| threads | 35 | 35 | 0 |
-| memory | 18 | 18 | 0 |
-| xam | 164 | 139 | 25 |
-| input | 4 | 4 | 0 |
-| audio | 8 | 8 | 0 |
+| xam | 25 | 0 | 25 |
 
-<details><summary>stateless: 33 calls</summary>
+<details><summary>xam: 25 calls</summary>
 
-`DbgBreakPoint` `DbgPrint` `ExGetXConfigSetting` `KeBugCheck` `KeBugCheckEx` `KeEnableFpuExceptions` `RtlCaptureContext` `RtlCompareMemory` `RtlCompareMemoryUlong` `RtlFillMemoryUlong` `RtlImageXexHeaderField` `RtlInitAnsiString` `RtlInitUnicodeString` `RtlMultiByteToUnicodeN` `RtlNtStatusToDosError` `RtlRaiseException` `RtlTimeFieldsToTime` `RtlTimeToTimeFields` `RtlUnicodeToMultiByteN` `RtlUnwind` `XGetAVPack` `XGetGameRegion` `XGetLanguage` `XamGetExecutionId` `XamGetSystemVersion` `XamVoiceClose` `XamVoiceCreate` `XamVoiceHeadsetPresent` `XamVoiceSubmitPacket` `__C_specific_handler` `_vsnprintf` `sprintf` `vsprintf`
-
-</details>
-
-<details><summary>files: 15 calls</summary>
-
-`NtCreateFile` `NtCreateIoCompletion` `NtDeviceIoControlFile` `NtFlushBuffersFile` `NtOpenFile` `NtQueryDirectoryFile` `NtQueryInformationFile` `NtQueryVolumeInformationFile` `NtReadFile` `NtReadFileScatter` `NtRemoveIoCompletion` `NtSetInformationFile` `NtSetIoCompletion` `NtWriteFile` `NtWriteFileGather`
-
-</details>
-
-<details><summary>objects: 27 calls</summary>
-
-`KeInitializeSemaphore` `KeReleaseSemaphore` `KeResetEvent` `KeSetEvent` `KeWaitForMultipleObjects` `KeWaitForSingleObject` `NtCancelTimer` `NtClearEvent` `NtClose` `NtCreateEvent` `NtCreateMutant` `NtCreateSemaphore` `NtCreateTimer` `NtDuplicateObject` `NtPulseEvent` `NtReleaseMutant` `NtReleaseSemaphore` `NtSetEvent` `NtSetTimerEx` `NtSignalAndWaitForSingleObjectEx` `NtWaitForMultipleObjectsEx` `NtWaitForSingleObjectEx` `ObDereferenceObject` `ObLookupThreadByThreadId` `ObOpenObjectByName` `ObOpenObjectByPointer` `ObReferenceObjectByHandle`
-
-</details>
-
-<details><summary>threads: 35 calls</summary>
-
-`ExCreateThread` `ExTerminateThread` `HalReturnToFirmware` `KeAcquireSpinLockAtRaisedIrql` `KeDelayExecutionThread` `KeEnterCriticalRegion` `KeGetCurrentProcessType` `KeLeaveCriticalRegion` `KeQueryBasePriorityThread` `KeQueryPerformanceFrequency` `KeQuerySystemTime` `KeRaiseIrqlToDpcLevel` `KeReleaseSpinLockFromRaisedIrql` `KeResumeThread` `KeSetAffinityThread` `KeSetBasePriorityThread` `KeSetDisableBoostThread` `KeTlsAlloc` `KeTlsFree` `KeTlsGetValue` `KeTlsSetValue` `KeTryToAcquireSpinLockAtRaisedIrql` `KfAcquireSpinLock` `KfLowerIrql` `KfReleaseSpinLock` `KiApcNormalRoutineNop` `NtQueueApcThread` `NtResumeThread` `NtSuspendThread` `RtlEnterCriticalSection` `RtlInitializeCriticalSection` `RtlInitializeCriticalSectionAndSpinCount` `RtlLeaveCriticalSection` `RtlTryEnterCriticalSection` `XexUnloadImageAndExitThread`
-
-</details>
-
-<details><summary>memory: 18 calls</summary>
-
-`ExAllocatePoolWithTag` `ExFreePool` `KeLockL2` `KeUnlockL2` `MmAllocatePhysicalMemory` `MmAllocatePhysicalMemoryEx` `MmFreePhysicalMemory` `MmGetPhysicalAddress` `MmQueryAddressProtect` `MmQueryAllocationSize` `MmSetAddressProtect` `NtAllocateVirtualMemory` `NtFreeVirtualMemory` `NtQueryVirtualMemory` `RtlFreeAnsiString` `RtlUnicodeStringToAnsiString` `XamAlloc` `XamFree`
-
-</details>
-
-<details><summary>xam: 164 calls</summary>
-
-`ExRegisterTitleTerminateNotification` `NetDll_WSACancelOverlappedIO` `NetDll_WSACleanup` `NetDll_WSACloseEvent` `NetDll_WSACreateEvent` `NetDll_WSAEventSelect` `NetDll_WSAGetLastError` `NetDll_WSAGetOverlappedResult` `NetDll_WSARecv` `NetDll_WSARecvFrom` `NetDll_WSAResetEvent` `NetDll_WSASend` `NetDll_WSASendTo` `NetDll_WSASetEvent` `NetDll_WSASetLastError` `NetDll_WSAStartup` `NetDll_WSAWaitForMultipleEvents` `NetDll_XNetCleanup` `NetDll_XNetConnect` `NetDll_XNetCreateKey` `NetDll_XNetDnsLookup` `NetDll_XNetDnsRelease` `NetDll_XNetGetBroadcastVersionStatus` `NetDll_XNetGetConnectStatus` `NetDll_XNetGetDebugXnAddr` `NetDll_XNetGetEthernetLinkStatus` `NetDll_XNetGetOpt` `NetDll_XNetGetTitleXnAddr` `NetDll_XNetInAddrToServer` `NetDll_XNetInAddrToString` `NetDll_XNetInAddrToXnAddr` `NetDll_XNetQosGetListenStats` `NetDll_XNetQosListen` `NetDll_XNetQosLookup` `NetDll_XNetQosRelease` `NetDll_XNetQosServiceLookup` `NetDll_XNetRandom` `NetDll_XNetRegisterKey` `NetDll_XNetServerToInAddr` `NetDll_XNetSetOpt` `NetDll_XNetStartup` `NetDll_XNetTsAddrToInAddr` `NetDll_XNetUnregisterInAddr` `NetDll_XNetUnregisterKey` `NetDll_XNetXnAddrToInAddr` `NetDll_XNetXnAddrToMachineId` `NetDll_XnpCapture` (stub) `NetDll_XnpConfig` (stub) `NetDll_XnpConfigUPnP` (stub) `NetDll_XnpEthernetInterceptRecv` (stub) `NetDll_XnpEthernetInterceptSetCallbacks` (stub) `NetDll_XnpEthernetInterceptXmit` (stub) `NetDll_XnpGetActiveSocketList` (stub) `NetDll_XnpGetConfigStatus` (stub) `NetDll_XnpGetVlanXboxName` (stub) `NetDll_XnpLoadConfigParams` (stub) `NetDll_XnpLoadMachineAccount` (stub) `NetDll_XnpLogonClearQEvent` (stub) `NetDll_XnpLogonGetQFlags` (stub) `NetDll_XnpLogonGetQVals` (stub) `NetDll_XnpLogonGetStatus` (stub) `NetDll_XnpLogonSetPState` (stub) `NetDll_XnpLogonSetQEvent` (stub) `NetDll_XnpLogonSetQFlags` (stub) `NetDll_XnpLogonSetQVals` (stub) `NetDll_XnpNoteSystemTime` (stub) `NetDll_XnpRegisterKeyForCallerType` (stub) `NetDll_XnpSaveConfigParams` (stub) `NetDll_XnpSaveMachineAccount` (stub) `NetDll_XnpSetVlanXboxName` (stub) `NetDll_XnpUnregisterKeyForCallerType` (stub) `NetDll___WSAFDIsSet` `NetDll_accept` `NetDll_bind` `NetDll_closesocket` `NetDll_connect` `NetDll_getpeername` `NetDll_getsockname` `NetDll_getsockopt` `NetDll_inet_addr` `NetDll_ioctlsocket` `NetDll_listen` `NetDll_recv` `NetDll_recvfrom` `NetDll_select` `NetDll_send` `NetDll_sendto` `NetDll_setsockopt` `NetDll_shutdown` `NetDll_socket` `Refresh` `XMsgCancelIORequest` `XMsgInProcessCall` `XMsgStartIORequest` `XMsgStartIORequestEx` `XMsgSystemProcessCall` `XNetLogonGetMachineID` `XNetLogonGetTitleID` `XNotifyGetNext` `XNotifyPositionUI` `XamContentClose` `XamContentCreate` `XamContentCreateDeviceEnumerator` `XamContentCreateEnumerator` `XamContentCreateEx` `XamContentDelete` `XamContentFlush` `XamContentGetCreator` `XamContentGetDeviceData` `XamContentGetDeviceName` `XamContentGetDeviceState` `XamContentGetLicenseMask` `XamContentGetThumbnail` `XamContentInstall` `XamContentLaunchImage` `XamContentResolve` `XamContentSetThumbnail` `XamCreateEnumeratorHandle` `XamEnumerate` `XamGetPrivateEnumStructureFromHandle` `XamLoaderLaunchTitle` `XamLoaderTerminateTitle` `XamNotifyCreateListener` `XamParseGamerTileKey` `XamReadTileToTexture` `XamSessionCreateHandle` `XamSessionRefObjByHandle` `XamShowAchievementsUI` `XamShowDeviceSelectorUI` `XamShowDirtyDiscErrorUI` `XamShowFriendRequestUI` `XamShowFriendsUI` `XamShowGameInviteUI` `XamShowGamerCardUIForXUID` `XamShowKeyboardUI` `XamShowMarketplaceUI` `XamShowMessageBoxUI` `XamShowMessageBoxUIEx` `XamShowMessageComposeUI` `XamShowMessagesUI` `XamShowPlayerReviewUI` `XamShowPlayersUI` `XamShowQuickChatUI` `XamShowSigninUI` `XamShowSigninUIp` `XamShowVoiceMailUI` `XamUserAreUsersFriends` `XamUserCheckPrivilege` `XamUserCreateAchievementEnumerator` `XamUserCreateStatsEnumerator` `XamUserGetMembershipTierFromXUID` `XamUserGetName` `XamUserGetOnlineCountryFromXUID` `XamUserGetSigninState` `XamUserGetXUID` `XamUserReadProfileSettings` `XamUserWriteProfileSettings` `XamWriteGamerTile` `XexCheckExecutablePrivilege` `XexGetModuleHandle` `XexGetModuleSection` `XexGetProcedureAddress` `XexLoadImage` `XexUnloadImage`
-
-</details>
-
-<details><summary>input: 4 calls</summary>
-
-`XamInputGetCapabilities` `XamInputGetKeystrokeEx` `XamInputGetState` `XamInputSetState`
-
-</details>
-
-<details><summary>audio: 8 calls</summary>
-
-`XAudioGetVoiceCategoryVolume` `XAudioGetVoiceCategoryVolumeChangeMask` `XAudioQueryDriverPerformance` `XAudioRegisterRenderDriverClient` `XAudioSubmitRenderDriverFrame` `XAudioUnregisterRenderDriverClient` `XMACreateContext` `XMAReleaseContext`
+`NetDll_XnpCapture` (stub) `NetDll_XnpConfig` (stub) `NetDll_XnpConfigUPnP` (stub) `NetDll_XnpEthernetInterceptRecv` (stub) `NetDll_XnpEthernetInterceptSetCallbacks` (stub) `NetDll_XnpEthernetInterceptXmit` (stub) `NetDll_XnpGetActiveSocketList` (stub) `NetDll_XnpGetConfigStatus` (stub) `NetDll_XnpGetVlanXboxName` (stub) `NetDll_XnpLoadConfigParams` (stub) `NetDll_XnpLoadMachineAccount` (stub) `NetDll_XnpLogonClearQEvent` (stub) `NetDll_XnpLogonGetQFlags` (stub) `NetDll_XnpLogonGetQVals` (stub) `NetDll_XnpLogonGetStatus` (stub) `NetDll_XnpLogonSetPState` (stub) `NetDll_XnpLogonSetQEvent` (stub) `NetDll_XnpLogonSetQFlags` (stub) `NetDll_XnpLogonSetQVals` (stub) `NetDll_XnpNoteSystemTime` (stub) `NetDll_XnpRegisterKeyForCallerType` (stub) `NetDll_XnpSaveConfigParams` (stub) `NetDll_XnpSaveMachineAccount` (stub) `NetDll_XnpSetVlanXboxName` (stub) `NetDll_XnpUnregisterKeyForCallerType` (stub)
 
 </details>
 
@@ -90,7 +41,7 @@ Shared by every title (Any360's own roadmap); the title follows once they land.
 
 | Any360 step | What | State |
 |---|---|---|
-| 11 | third and fourth titles (Test Drive Unlimited, Sonic 06) | not started |
+| 11 | third and fourth titles (Test Drive Unlimited, Sonic 06) | partial: Test Drive Unlimited boots to its title screen with all eight groups on `any360::sys` and no call reaching the runtime; gameplay, saves and sound not checked yet; Sonic 06 not started |
 | 12 | paths no title took yet: `XMA*` decoding, STFS packages, several users, guide UIs, Live offline, xbdm | partial: 602 of 2,914 exports native with scenario tests, none of the 2,294 reference stubs sorted |
 | 13 | Any360's own host: XEX loader, address space, threads, guest dispatch, MMIO, devices | not started |
 | 14 | the platform layer: window, input, audio, presenter on Windows and Linux (Steam Deck) | partial: SDL3 audio output only |
@@ -121,7 +72,7 @@ Order of work: symbol recovery and library recognition first (they shrink this l
 
 ## 6. This title
 
-- Switch the system binding on, group by group, with an in-game check after each (stateless, files, objects, threads, memory, XAM, audio, input), as Crackdown and The Simpsons Game did.
+- Check the system binding in game past the title screen: a save loaded, driving, sound, the gamepad and its rumble, a long session; `--any360_sys_trace=true` logs any call that still reaches the runtime.
 - Name the library ranges of the executable (D3D runtime, CRT, Bink, audio middleware) in Any360's titles/tdu/modules.json.
 - A golden test target (guest sandbox) so rewritten functions can be verified.
 

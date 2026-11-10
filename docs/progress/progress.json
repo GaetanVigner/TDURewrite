@@ -3,8 +3,8 @@
  "date": "2026-11-10",
  "system_calls": {
   "total": 327,
-  "any360": 23,
-  "ready": 279,
+  "any360": 302,
+  "ready": 0,
   "runtime": 0,
   "stub": 25,
   "missing": 0

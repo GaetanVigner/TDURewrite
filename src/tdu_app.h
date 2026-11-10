@@ -7,6 +7,7 @@
 
 #include <rex/rex_app.h>
 
+#include "any360/host/settings.h"
 #include "any360_graphics.h"
 
 #ifdef _WIN32
@@ -26,8 +27,15 @@ class TduApp : public rex::ReXApp {
     if (config.gpu_plugin.empty()) config.gpu_plugin = "xenos";
   }
 
-  // Any360's GPU, when asked, before the title's first Vd* call.
-  void OnPostSetup() override { tdu::StartAny360GraphicsIfAsked(); }
+  // Any360's GPU, when asked, before the title's first Vd* call; then the system calls on any360::sys, the groups
+  // any360_sys_groups names (before the title's first instruction).
+  void OnPostSetup() override {
+    tdu::StartAny360GraphicsIfAsked();
+    any360::host::rexglue::StartSystemFromSettings(game_data_root(), user_data_root());
+  }
+
+  // The system binding's own threads (the audio pump, the XMA decoder) stop before the runtime shuts down.
+  void OnShutdown() override { any360::host::rexglue::StopSystemFromSettings(); }
 
   // Without --game_data_root: a game folder next to the executable, else the repository's (out/build/tdu.exe).
   void OnConfigurePaths(rex::PathConfig& paths) override {

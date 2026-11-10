@@ -10,7 +10,7 @@
 
 | | Where it stands |
 |---|---|
-| **System calls** | 23 of 327 on `any360::sys`, 279 more ready in Any360 |
+| **System calls** | 302 of 327 on `any360::sys` (opt-in) |
 | **Graphics** | `any360::gfx`, a Vulkan renderer handling 283 of 323 Xbox 360 GPU features (opt-in) |
 | **Host** | ReXGlue's loader, threads and window; Any360's own host is not started |
 | **Game code** | 0 of 45,102 functions rewritten in C++ (0%) |
@@ -34,7 +34,7 @@ The picture above is that road: green is what already runs on the project's own 
 | Recompilation | `default.xex` fully translated (ReXGlue v0.10.0): 45,102 functions; 53 the analyzer misses are declared in [config/](config/) |
 | Playable | boots to the title, plays the intro videos at their own speed and drives on the island, with sound and gamepad, on the ReXGlue runtime's GPU (Direct3D 12) or on Any360's |
 | Graphics on Any360 | `--any360_gpu=true` draws the whole game through `any360::gfx` (Vulkan): resolution scale (`--any360_gpu_scale=2`), anti-aliasing (`--any360_gpu_msaa=4`), frame rates above 60 (`--any360_gpu_vblank_hz=240` gives up to 120 FPS). Driving at 2x with 4x MSAA: 83-115 FPS on an RTX 5070 Ti, against 54-85 for the runtime's GPU at 2x. Every Any360 option is a setting |
-| System calls on Any360 | not switched on yet: the title imports 327 calls, Any360 has 302 of them; the next step, as done for [Crackdown](https://github.com/GaetanVigner/CrackdownRewrite) and [The Simpsons Game](https://github.com/GaetanVigner/TheSimpsonsGameRewrite) |
+| System calls on Any360 | `--any360_sys_groups=stateless,files,objects,threads,memory,xam,input,audio` puts the Xbox system calls on `any360::sys` (files, threads, memory, profile, a native XMA decoder, input), as in [Crackdown](https://github.com/GaetanVigner/CrackdownRewrite) and [The Simpsons Game](https://github.com/GaetanVigner/TheSimpsonsGameRewrite). Checked from boot through the intro videos to the title screen, where no call reaches the ReXGlue kernel any more; driving, saves and sound are still to check. `--any360_sys_trace=true` logs the first call of each kind and any that still goes to the runtime |
 | Game code | recompiled PowerPC throughout; no function rewritten yet |
 
 What is missing, in order, with the calls and functions each step needs: [docs/progress/ROADMAP.md](docs/progress/ROADMAP.md).

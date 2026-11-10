@@ -21528,7 +21528,7 @@ address,module,kind,instructions,state,handler,file
 826446E8,C runtime (CRT),library,201,library,,
 826448D0,C runtime (CRT),library,21,library,,
 826448F0,C runtime (CRT),library,24,library,,
-82644930,C runtime (CRT),library,108,library,,
+82644930,C runtime (CRT),library,108,native,CrtMemmove,xdk_natives.cpp
 82644A94,C runtime (CRT),library,3,library,,
 82644AA0,C runtime (CRT),library,136,library,,
 82644B58,C runtime (CRT),library,5,library,,

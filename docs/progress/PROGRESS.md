@@ -13,7 +13,7 @@ Generated on 2026-11-10 by [Any360](https://github.com/GaetanVigner/Any360)'s `t
 | Host (XEX loader, address space, threads, window, input, audio output) | 0 | 2 | 0% | ReXGlue's host runs the title; Any360 steps 13 and 14 |
 | Game functions rewritten in C++ | 0 | 31,877 | 0% | 0 more verified against the original in the sandbox |
 | Library functions (SDK, middleware) replaced | 0 | 4,864 | 0% | replaced as units, not decompiled |
-| Middleware functions (third-party physics, video) | - | 8,361 | - | kept recompiled or relinked from the vendor's library, not rewritten |
+| Middleware functions (third-party physics, AI, scripting, video) | - | 8,361 | - | kept recompiled or relinked from the vendor's library, not rewritten |
 | Instructions of rewritten functions | 0 | 1,999,820 | 0% | PowerPC instructions of the original |
 
 ## System calls
@@ -385,7 +385,7 @@ What `any360::gfx` handles of the Xbox 360 GPU (the same for every title; a titl
 
 ## Game code
 
-Every function of the executable by module (named address ranges; the rest by 1 MB area until symbol recovery names them). **native**: rewritten: bound to C++. **verified**: checked against the original in the sandbox. **library**: SDK code, replaced as a unit by Any360. **middleware**: third-party engine code (physics, video): kept or relinked, not rewritten. **recompiled**: recompiled PowerPC, still to rewrite.
+Every function of the executable by module (named address ranges; the rest by 1 MB area until symbol recovery names them). **native**: rewritten: bound to C++. **verified**: checked against the original in the sandbox. **library**: SDK code, replaced as a unit by Any360. **middleware**: third-party engine code (physics, AI, video ...): kept or relinked, not rewritten. **recompiled**: recompiled PowerPC, still to rewrite.
 
 | Module | Kind | Functions | Instructions | Native | Verified | Still recompiled | Native share |
 |---|---|---|---|---|---|---|---|

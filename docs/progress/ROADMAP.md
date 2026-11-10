@@ -60,7 +60,7 @@ SDK code linked into the executable is not decompiled: Any360 provides the same 
 | C runtime (CRT) | 760 | 45,321 | 0 | 0 | 760 |
 | XAPI (Win32 layer over the kernel and XAM) | 324 | 11,057 | 0 | 0 | 324 |
 
-Third-party middleware the game links (physics, video) is neither the game's own code nor something Any360 provides. It is not rewritten function by function: it stays recompiled, or is replaced by the vendor's library for the target platform (or an open implementation) once the game's code around it is portable.
+Third-party middleware the game links (physics, AI, scripting, video and the like) is neither the game's own code nor something Any360 provides. It is not rewritten function by function: it stays recompiled, or is replaced by the vendor's library for the target platform (or an open implementation) once the game's code around it is portable.
 
 | Middleware | Functions | Instructions |
 |---|---|---|

@@ -1276,7 +1276,7 @@
 <rect x="20" y="661" width="11" height="11" rx="2" fill="#8957e5"/>
 <text class="t" x="36" y="671">library: SDK code, replaced as a unit by Any360</text>
 <rect x="340" y="661" width="11" height="11" rx="2" fill="#1b7c83"/>
-<text class="t" x="356" y="671">middleware: third-party engine code (physics, video): kept or relinked, not rewritten</text>
+<text class="t" x="356" y="671">middleware: third-party engine code (physics, AI, video ...): kept or relinked, not rewritten</text>
 <rect x="20" y="678" width="11" height="11" rx="2" fill="#30363d"/>
 <text class="t" x="36" y="688">recompiled: recompiled PowerPC, still to rewrite</text>
 <text class="h" x="690" y="222">Its 327 Xbox system calls, by group</text>

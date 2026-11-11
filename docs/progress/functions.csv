@@ -21571,8 +21571,8 @@ address,module,kind,instructions,state,handler,file
 82646730,C runtime (CRT),library,10,library,,
 82646734,C runtime (CRT),library,9,library,,
 82646760,C runtime (CRT),library,10,library,,
-82646788,C runtime (CRT),library,6,library,,
-826467A0,C runtime (CRT),library,10,library,,
+82646788,C runtime (CRT),library,6,native,CrtGetExp,xdk_natives.cpp
+826467A0,C runtime (CRT),library,10,native,CrtSetExp,xdk_natives.cpp
 826467C8,C runtime (CRT),library,56,library,,
 826468A8,C runtime (CRT),library,52,library,,
 82646980,C runtime (CRT),library,90,library,,
@@ -21680,8 +21680,8 @@ address,module,kind,instructions,state,handler,file
 8264C800,C runtime (CRT),library,14,library,,
 8264C838,C runtime (CRT),library,22,library,,
 8264C890,C runtime (CRT),library,26,library,,
-8264C8F8,C runtime (CRT),library,10,library,,
-8264C920,C runtime (CRT),library,6,library,,
+8264C8F8,C runtime (CRT),library,10,native,CrtSetExp,xdk_natives.cpp
+8264C920,C runtime (CRT),library,6,native,CrtGetExp,xdk_natives.cpp
 8264C938,C runtime (CRT),library,13,library,,
 8264C970,C runtime (CRT),library,9,library,,
 8264C998,C runtime (CRT),library,33,library,,

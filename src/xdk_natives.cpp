@@ -29,6 +29,13 @@ ANY360_XDK_BIND(82640938, CrtTolower)
 ANY360_XDK_BIND(82644140, CrtToupper)
 ANY360_XDK_BIND(827834F0, CrtStricmp)
 ANY360_XDK_BIND(82644078, CrtStrstr)
+// The C runtime's helpers on a double's bits: _get_exp and _set_exp (each is in the image twice). _finite
+// (sub_82654358), _isnan (sub_82654378), _sptype (sub_8264C998) and _add_exp (sub_8264C938) have their replacements
+// in Any360 too and are not bound: no run of the game has called them with both sides compared.
+ANY360_XDK_BIND(8264C920, CrtGetExp)
+ANY360_XDK_BIND(82646788, CrtGetExp)
+ANY360_XDK_BIND(826467A0, CrtSetExp)
+ANY360_XDK_BIND(8264C8F8, CrtSetExp)
 // wcscmp (sub_82783FC8) and mbtowc (sub_8265D078) have their replacements in Any360 too and are not bound: no run
 // of the game has called them with both sides compared. The strlen and strcmp built as loops of bytes
 // (sub_82545950, sub_82545700) are Havok's own, inside its code: middleware stays as it is, they are not bound.

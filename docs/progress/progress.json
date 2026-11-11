@@ -1,6 +1,6 @@
 {
  "title": "Test Drive Unlimited",
- "date": "2026-11-10",
+ "date": "2026-11-11",
  "system_calls": {
   "total": 327,
   "any360": 302,
@@ -16,9 +16,9 @@
  },
  "functions": {
   "total": 45102,
-  "native": 5,
+  "native": 14,
   "verified": 0,
-  "library": 4859,
+  "library": 4850,
   "middleware": 8361,
   "recompiled": 31877
  },
@@ -29,9 +29,9 @@
  },
  "instructions": {
   "total": 1999820,
-  "native": 912,
+  "native": 1037,
   "verified": 0,
-  "library": 205682,
+  "library": 205557,
   "middleware": 304622,
   "recompiled": 1488604
  }

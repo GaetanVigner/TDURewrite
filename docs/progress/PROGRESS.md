@@ -1,6 +1,6 @@
 # Test Drive Unlimited: rewrite progress
 
-Generated on 2026-11-10 by [Any360](https://github.com/GaetanVigner/Any360)'s `tools/title_progress.py`. What is still missing, step by step: [ROADMAP.md](ROADMAP.md). Every function: [functions.csv](functions.csv). Counts: [progress.json](progress.json).
+Generated on 2026-11-11 by [Any360](https://github.com/GaetanVigner/Any360)'s `tools/title_progress.py`. What is still missing, step by step: [ROADMAP.md](ROADMAP.md). Every function: [functions.csv](functions.csv). Counts: [progress.json](progress.json).
 
 ![Progress](progress.svg)
 
@@ -12,9 +12,9 @@ Generated on 2026-11-10 by [Any360](https://github.com/GaetanVigner/Any360)'s `t
 | Graphics on `any360::gfx` (GPU features Any360 handles) | 283 | 323 | 88% | opt-in on `master`: `--any360_gpu=true` (`--any360_gpu_scale=2 --any360_gpu_msaa=4`, `--any360_gpu_vblank_hz=240` for up to 120 FPS); 83-115 FPS driving at 2x with 4x MSAA on an RTX 5070 Ti, against 54-85 for the runtime's GPU at 2x |
 | Host (XEX loader, address space, threads, window, input, audio output) | 0 | 2 | 0% | ReXGlue's host runs the title; Any360 steps 13 and 14 |
 | Game functions rewritten in C++ | 0 | 31,877 | 0% | 0 more verified against the original in the sandbox |
-| Library functions (SDK, middleware) replaced | 5 | 4,864 | 0.1% | replaced as units, not decompiled |
+| Library functions (SDK, middleware) replaced | 14 | 4,864 | 0.3% | replaced as units, not decompiled |
 | Middleware functions (third-party physics, AI, scripting, video) | - | 8,361 | - | kept recompiled or relinked from the vendor's library, not rewritten |
-| Instructions of rewritten functions | 912 | 1,999,820 | 0.05% | PowerPC instructions of the original |
+| Instructions of rewritten functions | 1,037 | 1,999,820 | 0.05% | PowerPC instructions of the original |
 
 ## System calls
 
@@ -401,15 +401,24 @@ Every function of the executable by module (named address ranges; the rest by 1 
 | XDK audio (XAudio, XMA) | library | 1,388 | 53,897 | 0 | 0 | 1,388 | 0% |
 | XDK Xbox Live and voice (XOnline, XHV) | library | 956 | 49,754 | 0 | 0 | 956 | 0% |
 | XDK D3D runtime | library | 1,436 | 46,565 | 0 | 0 | 1,436 | 0% |
-| C runtime (CRT) | library | 760 | 45,321 | 4 | 0 | 756 | 0.5% |
+| C runtime (CRT) | library | 760 | 45,321 | 13 | 0 | 747 | 1.7% |
 | code 823xxxxx | game | 2,895 | 31,620 | 0 | 0 | 2,895 | 0% |
 | Bink video | middleware | 205 | 19,653 | 0 | 0 | 205 | 0% |
 | XAPI (Win32 layer over the kernel and XAM) | library | 324 | 11,057 | 1 | 0 | 323 | 0.3% |
 
-<details><summary>The 5 rewritten functions</summary>
+<details><summary>The 14 rewritten functions</summary>
 
 | Address | Module | Instructions | Handler | File |
 |---|---|---|---|---|
+| `8263FF40` | C runtime (CRT) | 19 | `CrtStrncmp` | xdk_natives.cpp |
+| `826401C8` | C runtime (CRT) | 23 | `CrtStrncpy` | xdk_natives.cpp |
+| `82640228` | C runtime (CRT) | 19 | `CrtStrncat` | xdk_natives.cpp |
+| `82640938` | C runtime (CRT) | 5 | `CrtTolower` | xdk_natives.cpp |
+| `82640DC0` | C runtime (CRT) | 8 | `CrtWcscpy` | xdk_natives.cpp |
+| `82640DE0` | C runtime (CRT) | 22 | `CrtStrrchr` | xdk_natives.cpp |
+| `82641450` | C runtime (CRT) | 15 | `CrtStrchr` | xdk_natives.cpp |
+| `826431B0` | C runtime (CRT) | 9 | `CrtWcslen` | xdk_natives.cpp |
+| `82644140` | C runtime (CRT) | 5 | `CrtToupper` | xdk_natives.cpp |
 | `82644930` | C runtime (CRT) | 108 | `CrtMemmove` | xdk_natives.cpp |
 | `82645BF0` | C runtime (CRT) | 251 | `CrtMemcpy` | xdk_natives.cpp |
 | `82646010` | C runtime (CRT) | 173 | `CrtCopyForward` | xdk_natives.cpp |

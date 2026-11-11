@@ -21,7 +21,7 @@
 | **Host** | ReXGlue's loader, threads and window; Any360's own host is not started |
 | **Game code** | 0 of 31,877 functions rewritten in C++ (0%) |
 
-Updated 2026-11-10. Every system call, module and rewritten function: [PROGRESS.md](docs/progress/PROGRESS.md). What is missing, step by step: [ROADMAP.md](docs/progress/ROADMAP.md). Function by function: [functions.csv](docs/progress/functions.csv).
+Updated 2026-11-11. Every system call, module and rewritten function: [PROGRESS.md](docs/progress/PROGRESS.md). What is missing, step by step: [ROADMAP.md](docs/progress/ROADMAP.md). Function by function: [functions.csv](docs/progress/functions.csv).
 <!-- progress:end -->
 
 ## What this is

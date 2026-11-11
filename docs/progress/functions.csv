@@ -14403,7 +14403,7 @@ address,module,kind,instructions,state,handler,file
 82545668,Havok Physics,middleware,1,middleware,,
 82545670,Havok Physics,middleware,17,middleware,,
 825456B8,Havok Physics,middleware,18,middleware,,
-82545700,Havok Physics,middleware,11,middleware,,
+82545700,Havok Physics,middleware,11,native,CrtStrcmp,xdk_natives.cpp
 82545730,Havok Physics,middleware,1,middleware,,
 82545738,Havok Physics,middleware,58,middleware,,
 82545820,Havok Physics,middleware,63,middleware,,

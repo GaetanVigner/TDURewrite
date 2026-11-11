@@ -45,10 +45,10 @@
   },
   "functions": {
    "total": 45102,
-   "native": 14,
+   "native": 15,
    "verified": 0,
    "library": 4850,
-   "middleware": 8361,
+   "middleware": 8360,
    "recompiled": 31877
   },
   "game_functions": {

@@ -14,7 +14,7 @@ Generated on 2026-11-11 by [Any360](https://github.com/GaetanVigner/Any360)'s `t
 | Game functions rewritten in C++ | 0 | 31,877 | 0% | 0 more verified against the original in the sandbox |
 | Library functions (SDK, middleware) replaced | 14 | 4,864 | 0.3% | replaced as units, not decompiled |
 | Middleware functions (third-party physics, AI, scripting, video) | - | 8,361 | - | kept recompiled or relinked from the vendor's library, not rewritten |
-| Instructions of rewritten functions | 1,037 | 1,999,820 | 0.05% | PowerPC instructions of the original |
+| Instructions of rewritten functions | 1,048 | 1,999,820 | 0.05% | PowerPC instructions of the original |
 
 ## System calls
 
@@ -389,7 +389,7 @@ Every function of the executable by module (named address ranges; the rest by 1 
 
 | Module | Kind | Functions | Instructions | Native | Verified | Still recompiled | Native share |
 |---|---|---|---|---|---|---|---|
-| Havok Physics | middleware | 8,156 | 284,969 | 0 | 0 | 8,156 | 0% |
+| Havok Physics | middleware | 8,156 | 284,969 | 1 | 0 | 8,155 | 0.01% |
 | code 82Axxxxx | game | 3,557 | 259,803 | 0 | 0 | 3,557 | 0% |
 | code 828xxxxx | game | 3,084 | 259,750 | 0 | 0 | 3,084 | 0% |
 | code 829xxxxx | game | 3,669 | 259,575 | 0 | 0 | 3,669 | 0% |
@@ -406,10 +406,11 @@ Every function of the executable by module (named address ranges; the rest by 1 
 | Bink video | middleware | 205 | 19,653 | 0 | 0 | 205 | 0% |
 | XAPI (Win32 layer over the kernel and XAM) | library | 324 | 11,057 | 1 | 0 | 323 | 0.3% |
 
-<details><summary>The 14 rewritten functions</summary>
+<details><summary>The 15 rewritten functions</summary>
 
 | Address | Module | Instructions | Handler | File |
 |---|---|---|---|---|
+| `82545700` | Havok Physics | 11 | `CrtStrcmp` | xdk_natives.cpp |
 | `8263FF40` | C runtime (CRT) | 19 | `CrtStrncmp` | xdk_natives.cpp |
 | `826401C8` | C runtime (CRT) | 23 | `CrtStrncpy` | xdk_natives.cpp |
 | `82640228` | C runtime (CRT) | 19 | `CrtStrncat` | xdk_natives.cpp |

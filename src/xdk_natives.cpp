@@ -46,3 +46,8 @@ ANY360_XDK_BIND(8264C8F8, CrtSetExp)
 // check): its eight callers loop on it while the GPU has not passed a ring position or written a fence. It sleeps
 // until the GPU moves on instead of spinning (any360_d3d_wait_sleep).
 ANY360_XDK_BIND(826737B8, D3dGpuWaitStep)
+// The D3D runtime's upload of the shader constants a mask marks as changed into the command buffer; this runtime
+// keeps the buffer's write pointer at device + 40. XAudio's mix with a volume ramp (sub_826B50B8) has its
+// replacement in Any360 too and is not bound: this build's recompiled vmaddfp rounds twice (a multiply, then an add)
+// where the replacement rounds once as the console does, and the game barely calls it.
+ANY360_XDK_BIND_WITH(8268DEF0, D3dDirtyConstants, 40)

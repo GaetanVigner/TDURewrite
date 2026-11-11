@@ -23430,7 +23430,7 @@ address,module,kind,instructions,state,handler,file
 8268DB50,XDK D3D runtime,library,48,library,,
 8268DC10,XDK D3D runtime,library,95,library,,
 8268DD90,XDK D3D runtime,library,88,library,,
-8268DEF0,XDK D3D runtime,library,91,library,,
+8268DEF0,XDK D3D runtime,library,91,native,D3dDirtyConstants,xdk_natives.cpp
 8268E060,XDK D3D runtime,library,374,library,,
 8268E638,XDK D3D runtime,library,51,library,,
 8268E708,XDK D3D runtime,library,46,library,,

@@ -21508,7 +21508,7 @@ address,module,kind,instructions,state,handler,file
 82643F78,C runtime (CRT),library,118,library,,
 82643FC0,C runtime (CRT),library,190,library,,
 82644010,C runtime (CRT),library,25,library,,
-82644078,C runtime (CRT),library,166,library,,
+82644078,C runtime (CRT),library,166,native,CrtStrstr,xdk_natives.cpp
 826440F8,C runtime (CRT),library,2,library,,
 82644100,C runtime (CRT),library,170,library,,
 82644140,C runtime (CRT),library,5,native,CrtToupper,xdk_natives.cpp
@@ -29410,7 +29410,7 @@ address,module,kind,instructions,state,handler,file
 82783178,"XDK Xbox Live and voice (XOnline, XHV)",library,89,library,,
 827832E0,"XDK Xbox Live and voice (XOnline, XHV)",library,88,library,,
 82783440,"XDK Xbox Live and voice (XOnline, XHV)",library,41,library,,
-827834F0,code 827xxxxx,game,21,recompiled,,
+827834F0,code 827xxxxx,game,21,native,CrtStricmp,xdk_natives.cpp
 82783548,code 827xxxxx,game,24,recompiled,,
 827835A8,code 827xxxxx,game,74,recompiled,,
 827836D0,code 827xxxxx,game,43,recompiled,,

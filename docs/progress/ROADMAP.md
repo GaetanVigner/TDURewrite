@@ -57,7 +57,7 @@ SDK code linked into the executable is not decompiled: Any360 provides the same 
 | XDK audio (XAudio, XMA) | 1,388 | 53,897 | 0 | 0 | 1,388 |
 | XDK Xbox Live and voice (XOnline, XHV) | 956 | 49,754 | 0 | 0 | 956 |
 | XDK D3D runtime | 1,436 | 46,565 | 0 | 0 | 1,436 |
-| C runtime (CRT) | 760 | 45,321 | 13 | 0 | 747 |
+| C runtime (CRT) | 760 | 45,321 | 14 | 0 | 746 |
 | XAPI (Win32 layer over the kernel and XAM) | 324 | 11,057 | 1 | 0 | 323 |
 
 Third-party middleware the game links (physics, AI, scripting, video and the like) is neither the game's own code nor something Any360 provides. It is not rewritten function by function: it stays recompiled, or is replaced by the vendor's library for the target platform (or an open implementation) once the game's code around it is portable.
@@ -69,7 +69,7 @@ Third-party middleware the game links (physics, AI, scripting, video and the lik
 
 ## 5. Game code as portable C++
 
-31,877 of 31,877 game functions are still recompiled PowerPC. The list, function by function, is [functions.csv](functions.csv) (state `recompiled` or `verified`). By module, largest first:
+31,876 of 31,877 game functions are still recompiled PowerPC. The list, function by function, is [functions.csv](functions.csv) (state `recompiled` or `verified`). By module, largest first:
 
 | Module | Functions left | Instructions left | Rewritten | Verified |
 |---|---|---|---|---|
@@ -80,7 +80,7 @@ Third-party middleware the game links (physics, AI, scripting, video and the lik
 | code 82Bxxxxx | 2,983 | 127,646 | 0 | 0 |
 | code 823xxxxx | 2,895 | 31,620 | 0 | 0 |
 | code 826xxxxx | 2,318 | 103,367 | 0 | 0 |
-| code 827xxxxx | 2,193 | 125,507 | 0 | 0 |
+| code 827xxxxx | 2,192 | 125,486 | 1 | 0 |
 | code 825xxxxx | 1,842 | 62,650 | 0 | 0 |
 
 Order of work: symbol recovery and library recognition first (they shrink this list), then leaf functions (no calls: each is checked alone), then their callers, module by module; every rewrite is bound over the recompiled function and proven equal in the guest sandbox before it replaces it (Any360's `pipeline/any360.py <title> select | decompile | bind | verify`).

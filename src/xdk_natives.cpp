@@ -42,3 +42,7 @@ ANY360_XDK_BIND(8264C8F8, CrtSetExp)
 // XAPI's GetLastError (sub_82697068) and SetLastError (sub_82697018) have their replacements in Any360, checked here
 // with both sides compared (171,899 and 171,972 calls, none different), and are not bound: five instructions each,
 // they gain nothing as host routines (--any360_xdk_bench: 1.0x and 0.9x).
+// The D3D runtime's GPU wait step (8 db16cyc pauses, then the device's stop flag, the read pointer and the hang
+// check): its eight callers loop on it while the GPU has not passed a ring position or written a fence. It sleeps
+// until the GPU moves on instead of spinning (any360_d3d_wait_sleep).
+ANY360_XDK_BIND(826737B8, D3dGpuWaitStep)

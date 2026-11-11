@@ -22842,7 +22842,7 @@ address,module,kind,instructions,state,handler,file
 82673798,XDK D3D runtime,library,1,library,,
 826737A0,XDK D3D runtime,library,2,library,,
 826737A8,XDK D3D runtime,library,4,library,,
-826737B8,XDK D3D runtime,library,45,library,,
+826737B8,XDK D3D runtime,library,45,native,D3dGpuWaitStep,xdk_natives.cpp
 82673890,XDK D3D runtime,library,21,library,,
 826738E8,XDK D3D runtime,library,27,library,,
 82673958,XDK D3D runtime,library,16,library,,

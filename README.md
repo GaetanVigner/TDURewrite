@@ -16,7 +16,7 @@
 
 | | Where it stands |
 |---|---|
-| **System calls** | 302 of 327 on `any360::sys` (opt-in) |
+| **System calls** | 303 of 327 on `any360::sys` (opt-in) |
 | **Graphics** | `any360::gfx`, a Vulkan renderer handling 283 of 323 Xbox 360 GPU features (opt-in) |
 | **Host** | ReXGlue's loader, threads and window; Any360's own host is not started |
 | **Game code** | 0 of 31,877 functions rewritten in C++ (0%) |

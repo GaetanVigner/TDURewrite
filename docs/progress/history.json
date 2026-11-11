@@ -32,10 +32,10 @@
   "date": "2026-11-11",
   "system_calls": {
    "total": 327,
-   "any360": 302,
+   "any360": 303,
    "ready": 0,
    "runtime": 0,
-   "stub": 25,
+   "stub": 24,
    "missing": 0
   },
   "gpu_units": {
@@ -45,10 +45,10 @@
   },
   "functions": {
    "total": 45102,
-   "native": 15,
+   "native": 14,
    "verified": 0,
    "library": 4850,
-   "middleware": 8360,
+   "middleware": 8361,
    "recompiled": 31877
   },
   "game_functions": {

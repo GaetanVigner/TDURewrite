@@ -4,15 +4,15 @@ Generated on 2026-11-11 with [PROGRESS.md](PROGRESS.md). The rewrite is done whe
 
 ## 1. System calls on any360::sys
 
-302 of 327 imports run on `any360::sys`; 25 do not yet.
+303 of 327 imports run on `any360::sys`; 24 do not yet.
 
 | Group | Calls to switch | Of which Any360 already has | Missing in Any360 |
 |---|---|---|---|
-| xam | 25 | 0 | 25 |
+| xam | 24 | 0 | 24 |
 
-<details><summary>xam: 25 calls</summary>
+<details><summary>xam: 24 calls</summary>
 
-`NetDll_XnpCapture` (stub) `NetDll_XnpConfig` (stub) `NetDll_XnpConfigUPnP` (stub) `NetDll_XnpEthernetInterceptRecv` (stub) `NetDll_XnpEthernetInterceptSetCallbacks` (stub) `NetDll_XnpEthernetInterceptXmit` (stub) `NetDll_XnpGetActiveSocketList` (stub) `NetDll_XnpGetConfigStatus` (stub) `NetDll_XnpGetVlanXboxName` (stub) `NetDll_XnpLoadConfigParams` (stub) `NetDll_XnpLoadMachineAccount` (stub) `NetDll_XnpLogonClearQEvent` (stub) `NetDll_XnpLogonGetQFlags` (stub) `NetDll_XnpLogonGetQVals` (stub) `NetDll_XnpLogonGetStatus` (stub) `NetDll_XnpLogonSetPState` (stub) `NetDll_XnpLogonSetQEvent` (stub) `NetDll_XnpLogonSetQFlags` (stub) `NetDll_XnpLogonSetQVals` (stub) `NetDll_XnpNoteSystemTime` (stub) `NetDll_XnpRegisterKeyForCallerType` (stub) `NetDll_XnpSaveConfigParams` (stub) `NetDll_XnpSaveMachineAccount` (stub) `NetDll_XnpSetVlanXboxName` (stub) `NetDll_XnpUnregisterKeyForCallerType` (stub)
+`NetDll_XnpCapture` (stub) `NetDll_XnpConfig` (stub) `NetDll_XnpConfigUPnP` (stub) `NetDll_XnpEthernetInterceptRecv` (stub) `NetDll_XnpEthernetInterceptSetCallbacks` (stub) `NetDll_XnpEthernetInterceptXmit` (stub) `NetDll_XnpGetActiveSocketList` (stub) `NetDll_XnpGetConfigStatus` (stub) `NetDll_XnpGetVlanXboxName` (stub) `NetDll_XnpLoadConfigParams` (stub) `NetDll_XnpLoadMachineAccount` (stub) `NetDll_XnpLogonClearQEvent` (stub) `NetDll_XnpLogonGetQFlags` (stub) `NetDll_XnpLogonGetQVals` (stub) `NetDll_XnpLogonSetPState` (stub) `NetDll_XnpLogonSetQEvent` (stub) `NetDll_XnpLogonSetQFlags` (stub) `NetDll_XnpLogonSetQVals` (stub) `NetDll_XnpNoteSystemTime` (stub) `NetDll_XnpRegisterKeyForCallerType` (stub) `NetDll_XnpSaveConfigParams` (stub) `NetDll_XnpSaveMachineAccount` (stub) `NetDll_XnpSetVlanXboxName` (stub) `NetDll_XnpUnregisterKeyForCallerType` (stub)
 
 </details>
 

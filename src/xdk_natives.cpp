@@ -27,10 +27,9 @@ ANY360_XDK_BIND(82640228, CrtStrncat)
 ANY360_XDK_BIND(82640DC0, CrtWcscpy)
 ANY360_XDK_BIND(82640938, CrtTolower)
 ANY360_XDK_BIND(82644140, CrtToupper)
-// strcmp as a loop of bytes (a library's build, not the C runtime's own). wcscmp (sub_82783FC8), mbtowc
-// (sub_8265D078) and the strlen built the same way (sub_82545950) have their replacements in Any360 too and are not
-// bound: no run of the game has called them with both sides compared.
-ANY360_XDK_BIND(82545700, CrtStrcmp)
+// wcscmp (sub_82783FC8) and mbtowc (sub_8265D078) have their replacements in Any360 too and are not bound: no run
+// of the game has called them with both sides compared. The strlen and strcmp built as loops of bytes
+// (sub_82545950, sub_82545700) are Havok's own, inside its code: middleware stays as it is, they are not bound.
 // XAPI's GetLastError (sub_82697068) and SetLastError (sub_82697018) have their replacements in Any360, checked here
 // with both sides compared (171,899 and 171,972 calls, none different), and are not bound: five instructions each,
 // they gain nothing as host routines (--any360_xdk_bench: 1.0x and 0.9x).

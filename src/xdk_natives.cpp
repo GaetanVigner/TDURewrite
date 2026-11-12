@@ -55,3 +55,6 @@ ANY360_XDK_BIND_WITH(8268DEF0, D3dDirtyConstants, 40)
 ANY360_XDK_BIND_WITH(8268DB50, D3dDirtyWords, 40)
 // The D3D runtime's copy of the title's shader constants into the device.
 ANY360_XDK_BIND(8266B808, D3dSetShaderConstants)
+// XAudio's fill of a block's buffer with its value (sub_826B9F70, sub_826B9E38, sub_826B9FD8, sub_826B9F08,
+// sub_826BA040: 256 to 4096 floats) has its replacement in Any360 too and is not bound: no run of the game has called
+// it with both sides compared.

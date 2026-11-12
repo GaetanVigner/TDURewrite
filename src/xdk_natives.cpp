@@ -53,3 +53,5 @@ ANY360_XDK_BIND(826737B8, D3dGpuWaitStep)
 ANY360_XDK_BIND_WITH(8268DEF0, D3dDirtyConstants, 40)
 // The same upload for the constants of 4 bytes a bit.
 ANY360_XDK_BIND_WITH(8268DB50, D3dDirtyWords, 40)
+// The D3D runtime's copy of the title's shader constants into the device.
+ANY360_XDK_BIND(8266B808, D3dSetShaderConstants)

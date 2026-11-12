@@ -22567,7 +22567,7 @@ address,module,kind,instructions,state,handler,file
 8266B6C8,XDK D3D runtime,library,1,library,,
 8266B6D0,XDK D3D runtime,library,75,library,,
 8266B800,XDK D3D runtime,library,1,library,,
-8266B808,XDK D3D runtime,library,64,library,,
+8266B808,XDK D3D runtime,library,64,native,D3dSetShaderConstants,xdk_natives.cpp
 8266B918,XDK D3D runtime,library,64,library,,
 8266BA28,XDK D3D runtime,library,7,library,,
 8266BA48,XDK D3D runtime,library,7,library,,

@@ -51,3 +51,5 @@ ANY360_XDK_BIND(826737B8, D3dGpuWaitStep)
 // replacement in Any360 too and is not bound: this build's recompiled vmaddfp rounds twice (a multiply, then an add)
 // where the replacement rounds once as the console does, and the game barely calls it.
 ANY360_XDK_BIND_WITH(8268DEF0, D3dDirtyConstants, 40)
+// The same upload for the constants of 4 bytes a bit.
+ANY360_XDK_BIND_WITH(8268DB50, D3dDirtyWords, 40)

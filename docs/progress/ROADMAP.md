@@ -1,6 +1,6 @@
 # Test Drive Unlimited: roadmap
 
-Generated on 2026-11-11 with [PROGRESS.md](PROGRESS.md). The rewrite is done when nothing of the Xbox 360 or of ReXGlue's runtime is left under the game: every system call on `any360::sys`, graphics on `any360::gfx`, Any360 as the host, and the game's code as portable C++. Steps are in working order; each lists what it still needs.
+Generated on 2026-11-12 with [PROGRESS.md](PROGRESS.md). The rewrite is done when nothing of the Xbox 360 or of ReXGlue's runtime is left under the game: every system call on `any360::sys`, graphics on `any360::gfx`, Any360 as the host, and the game's code as portable C++. Steps are in working order; each lists what it still needs.
 
 ## 1. System calls on any360::sys
 
@@ -56,7 +56,7 @@ SDK code linked into the executable is not decompiled: Any360 provides the same 
 |---|---|---|---|---|---|
 | XDK audio (XAudio, XMA) | 1,388 | 53,897 | 0 | 0 | 1,388 |
 | XDK Xbox Live and voice (XOnline, XHV) | 956 | 49,754 | 0 | 0 | 956 |
-| XDK D3D runtime | 1,436 | 46,565 | 2 | 0 | 1,434 |
+| XDK D3D runtime | 1,436 | 46,565 | 3 | 0 | 1,433 |
 | C runtime (CRT) | 760 | 45,321 | 18 | 0 | 742 |
 | XAPI (Win32 layer over the kernel and XAM) | 324 | 11,057 | 1 | 0 | 323 |
 

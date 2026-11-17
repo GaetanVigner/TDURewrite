@@ -114,15 +114,41 @@ endmacro()
 # codegen, including one a project assembles itself rather than taking the
 # library rexglue_setup_target() builds. The stamp comes first: the DEPFILE
 # names it.
-add_custom_command(
-    OUTPUT "${CMAKE_CURRENT_SOURCE_DIR}/generated/default/codegen.build.stamp"
-           ${REXGLUE_ENTRYPOINT_GENERATED_SOURCES}
-    COMMAND $<TARGET_FILE:rex::rexglue> codegen ${CMAKE_CURRENT_SOURCE_DIR}/tdu_manifest.toml
-    DEPFILE "${CMAKE_CURRENT_SOURCE_DIR}/generated/default/codegen.d"
-    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-    COMMENT "Generating recompiled code for tdu"
-    VERBATIM
-)
+# Codegen needs the disc (game/default.xex). A tree without it (generated/default copied from a checkout that has
+# it, e.g. a Linux build) builds that code as it is: the step only stamps, and the depfile (written with the other
+# checkout's paths) is not read. TDU_CODEGEN=ON or OFF forces either; AUTO picks ON when game/default.xex exists or
+# nothing was generated yet.
+set(TDU_CODEGEN "AUTO" CACHE STRING "Run codegen in the build: ON, OFF or AUTO (when game/default.xex exists)")
+set_property(CACHE TDU_CODEGEN PROPERTY STRINGS AUTO ON OFF)
+if(TDU_CODEGEN STREQUAL "AUTO")
+    if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/game/default.xex"
+       OR NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/generated/default/sources.cmake")
+        set(_rexglue_run_codegen ON)
+    else()
+        set(_rexglue_run_codegen OFF)
+    endif()
+else()
+    set(_rexglue_run_codegen ${TDU_CODEGEN})
+endif()
+if(_rexglue_run_codegen)
+    add_custom_command(
+        OUTPUT "${CMAKE_CURRENT_SOURCE_DIR}/generated/default/codegen.build.stamp"
+               ${REXGLUE_ENTRYPOINT_GENERATED_SOURCES}
+        COMMAND $<TARGET_FILE:rex::rexglue> codegen ${CMAKE_CURRENT_SOURCE_DIR}/tdu_manifest.toml
+        DEPFILE "${CMAKE_CURRENT_SOURCE_DIR}/generated/default/codegen.d"
+        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+        COMMENT "Generating recompiled code for tdu"
+        VERBATIM
+    )
+else()
+    add_custom_command(
+        OUTPUT "${CMAKE_CURRENT_SOURCE_DIR}/generated/default/codegen.build.stamp"
+               ${REXGLUE_ENTRYPOINT_GENERATED_SOURCES}
+        COMMAND ${CMAKE_COMMAND} -E touch "${CMAKE_CURRENT_SOURCE_DIR}/generated/default/codegen.build.stamp"
+        COMMENT "Codegen skipped for tdu (TDU_CODEGEN=${TDU_CODEGEN}): the generated code is built as it is"
+        VERBATIM
+    )
+endif()
 add_custom_target(tdu_codegen
     DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/generated/default/codegen.build.stamp")
 

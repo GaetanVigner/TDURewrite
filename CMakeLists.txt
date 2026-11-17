@@ -53,7 +53,21 @@ endif()
 # REXGLUE_RECOMP_DEBUG_INFO): profiles (any360_gpu_profile) symbolized with llvm-symbolizer.
 foreach(_any360_target any360_gfx any360_gfx_vulkan any360_host_rexglue any360_sys any360_xenos_shader)
   if(TARGET ${_any360_target})
-    target_compile_options(${_any360_target} PRIVATE -gline-tables-only -gcodeview)
+    # CodeView and the PDB are the Windows (COFF) link's; line tables everywhere.
+    target_compile_options(${_any360_target} PRIVATE -gline-tables-only $<$<PLATFORM_ID:Windows>:-gcodeview>)
   endif()
 endforeach()
-target_link_options(tdu PRIVATE "-Wl,/DEBUG")
+if(WIN32)
+  target_link_options(tdu PRIVATE "-Wl,/DEBUG")
+endif()
+
+# The runtime next to the executable (its RUNPATH is $ORIGIN); build.ps1 does it on Windows.
+if(NOT WIN32)
+  foreach(_rex_lib rex::runtime rex::gpu-xenos)
+    if(TARGET ${_rex_lib})
+      add_custom_command(TARGET tdu POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE:${_rex_lib}> $<TARGET_FILE_DIR:tdu>
+        VERBATIM)
+    endif()
+  endforeach()
+endif()

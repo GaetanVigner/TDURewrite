@@ -24,8 +24,6 @@ REXCVAR_DEFINE_STRING(any360_gpu_pipeline_cache, "any360_pipelines.bin", "GPU",
 REXCVAR_DEFINE_BOOL(any360_gpu_async_pipelines, true, "GPU",
                     "Any360: pipelines compiled on threads of their own (a draw waits for none, so a scene seen the first "
                     "time shows its objects a moment late; off: the frame waits, a stutter instead)");
-REXCVAR_DEFINE_BOOL(any360_gpu_show_fps, false, "GPU",
-                    "Any360: a frame rate counter over the frames (FPS, average and slowest frame, GPU time)");
 REXCVAR_DEFINE_BOOL(any360_gpu_embed, true, "GPU",
                     "Any360: frames drawn inside the game's window (off: a window of their own)");
 REXCVAR_DEFINE_BOOL(any360_gpu_async_renderer, true, "GPU",
@@ -75,7 +73,6 @@ void StartAny360GraphicsIfAsked() {
   options.msaa_samples = uint32_t(std::clamp(REXCVAR_GET(any360_gpu_msaa), 1, 8));
   options.pipeline_cache_path = REXCVAR_GET(any360_gpu_pipeline_cache);
   options.async_pipelines = REXCVAR_GET(any360_gpu_async_pipelines);
-  options.show_fps = REXCVAR_GET(any360_gpu_show_fps);
   options.embed = REXCVAR_GET(any360_gpu_embed);
   options.async_renderer = REXCVAR_GET(any360_gpu_async_renderer);
   options.record_threads = REXCVAR_GET(any360_gpu_record_threads);

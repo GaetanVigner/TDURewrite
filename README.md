@@ -51,6 +51,8 @@ The games rewritten on it, each with the same report of where it stands:
 - [Crackdown](https://github.com/GaetanVigner/CrackdownRewrite)
 - [The Simpsons Game](https://github.com/GaetanVigner/TheSimpsonsGameRewrite)
 - [Test Drive Unlimited](https://github.com/GaetanVigner/TDURewrite) (this repository)
+- [Call of Duty: Black Ops](https://github.com/GaetanVigner/CoDBoRewrite)
+- [Mirror's Edge](https://github.com/GaetanVigner/MirrorsEdgeRewrite)
 
 How it is designed and how far it is: [the project page](https://github.com/GaetanVigner/Any360), [its progress](https://github.com/GaetanVigner/Any360/blob/main/docs/progress.svg), [the rule native functions follow](https://github.com/GaetanVigner/Any360/blob/main/docs/NATIVE_FUNCTIONS.md).
 
@@ -63,6 +65,8 @@ tdu.exe --any360_gpu=true --any360_sys_groups=stateless,files,objects,threads,me
 ```
 
 `--any360_gpu=true` draws the whole game through `any360::gfx` (`--any360_gpu_scale=2 --any360_gpu_msaa=4`; `--any360_gpu_vblank_hz=240` for frame rates above 60); `--any360_sys_groups` puts the Xbox system calls on `any360::sys` (checked to the title screen; driving, saves and sound still to check). The library functions run on `any360::xdk` by default (`--any360_xdk_natives=false` runs the game's own; `--any360_xdk_verify=true` runs both on every call and compares them).
+
+`--any360_fps_overlay=true` draws Any360's frame counter over the top-left corner of the picture (frames per second, frame time and the slowest of the last half second, median and 10% / 1% lows of the last 512 frames, GPU time a frame): the same for every game on `any360::gfx`, off by default and free when off. The Any360Launcher's Video options switch it on.
 
 ## Building
 

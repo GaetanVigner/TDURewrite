@@ -15,7 +15,7 @@
 > | **Any360** (`--any360_gpu=true`, all 8 `any360::sys` groups) | **115.0** | **115.6** | **110.3** | **101.2** | **3.3 GB**, flat |
 > | ReXGlue (its own GPU and kernel) | 71.7 | 77.8 | 54.2 | 34.1 | 17.2 GB mean, 19.5 GB max, growing |
 >
-> Any360 [2f9a9d1](https://github.com/GaetanVigner/Any360/commit/2f9a9d1), Ryzen 7 7800X3D (logical processors 0-7),
+> Any360 [2f9a9d1](https://github.com/GaetanVigner/Any360/commit/2f9a9d1), Ryzen 7 7800X3D (all 16 logical processors: the runtime resets the launch's affinity mask at startup),
 > RTX 5070 Ti, 1280x720, no MSAA. Rank test: z +8.3 on the average and both lows. Method and raw logs:
 > [docs/perf/2026-11-27-any360-vs-rexglue](docs/perf/2026-11-27-any360-vs-rexglue/README.md).
 
@@ -33,9 +33,9 @@
 | **System calls** | 303 of 327 on `any360::sys` (opt-in) |
 | **Graphics** | `any360::gfx`, a Vulkan renderer handling 283 of 323 Xbox 360 GPU features (opt-in) |
 | **Host** | ReXGlue's loader, threads and window; Any360's own host is not started |
-| **Game code** | 1 of 31,877 functions rewritten in C++ (0.00%) |
+| **Game code** | 0 of 31,875 functions rewritten in C++ (0%) |
 
-Updated 2026-11-27. Every system call, module and rewritten function: [PROGRESS.md](docs/progress/PROGRESS.md). What is missing, step by step: [ROADMAP.md](docs/progress/ROADMAP.md). Function by function: [functions.csv](docs/progress/functions.csv).
+Updated 2026-11-28. Every system call, module and rewritten function: [PROGRESS.md](docs/progress/PROGRESS.md). What is missing, step by step: [ROADMAP.md](docs/progress/ROADMAP.md). Function by function: [functions.csv](docs/progress/functions.csv).
 <!-- progress:end -->
 
 ## What this is

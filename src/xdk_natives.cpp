@@ -29,32 +29,58 @@ ANY360_XDK_BIND(82640938, CrtTolower)
 ANY360_XDK_BIND(82644140, CrtToupper)
 ANY360_XDK_BIND(827834F0, CrtStricmp)
 ANY360_XDK_BIND(82644078, CrtStrstr)
-// The C runtime's helpers on a double's bits: _get_exp and _set_exp (each is in the image twice). _finite
-// (sub_82654358), _isnan (sub_82654378), _sptype (sub_8264C998) and _add_exp (sub_8264C938) have their replacements
-// in Any360 too and are not bound: no run of the game has called them with both sides compared.
+// The C runtime's helpers on a double's bits: _get_exp and _set_exp (each is in the image twice), _isnan and _sptype.
+// _finite (sub_82654358) and _add_exp (sub_8264C938) have their replacements in Any360 too and are not bound: the game's
+// runs do not call them, and the self-test below finds them right (3,000 calls each, none different) but slower than
+// the functions' own code (2.5 -> 3.8 ns and 7.5 -> 8.8 ns).
 ANY360_XDK_BIND(8264C920, CrtGetExp)
 ANY360_XDK_BIND(82646788, CrtGetExp)
 ANY360_XDK_BIND(826467A0, CrtSetExp)
 ANY360_XDK_BIND(8264C8F8, CrtSetExp)
-// wcscmp (sub_82783FC8) and mbtowc (sub_8265D078) have their replacements in Any360 too and are not bound: no run
-// of the game has called them with both sides compared. The strlen and strcmp built as loops of bytes
+ANY360_XDK_BIND(82654378, CrtIsnan)
+ANY360_XDK_BIND(8264C998, CrtSptype)
+// wcscmp and wcsncpy. mbtowc (sub_8265D078) has its replacement in Any360 too and is not bound: checked in game
+// (39 calls, none different), it is slower than the function's own code (--any360_xdk_bench: 14.1 -> 17.5 ns, 0.8x).
+ANY360_XDK_BIND(82783FC8, CrtWcscmp)
+ANY360_XDK_BIND(82644158, CrtWcsncpy)
+// The strlen and strcmp built as loops of bytes
 // (sub_82545950, sub_82545700) are Havok's own, inside its code: middleware stays as it is, they are not bound.
 // XAPI's GetLastError (sub_82697068) and SetLastError (sub_82697018) have their replacements in Any360, checked here
-// with both sides compared (171,899 and 171,972 calls, none different), and are not bound: five instructions each,
-// they gain nothing as host routines (--any360_xdk_bench: 1.0x and 0.9x).
+// with both sides compared (about 640,000 calls each while driving, none different), and are not bound: five
+// instructions each, they gain nothing as host routines (--any360_xdk_bench: 10.2 -> 9.9 ns and 10.2 -> 10.4 ns).
 // The D3D runtime's GPU wait step (8 db16cyc pauses, then the device's stop flag, the read pointer and the hang
 // check): its eight callers loop on it while the GPU has not passed a ring position or written a fence. It sleeps
 // until the GPU moves on instead of spinning (any360_d3d_wait_sleep).
 ANY360_XDK_BIND(826737B8, D3dGpuWaitStep)
 // The D3D runtime's upload of the shader constants a mask marks as changed into the command buffer; this runtime
-// keeps the buffer's write pointer at device + 40. XAudio's mix with a volume ramp (sub_826B50B8) has its
-// replacement in Any360 too and is not bound: this build's recompiled vmaddfp rounds twice (a multiply, then an add)
-// where the replacement rounds once as the console does, and the game barely calls it.
+// keeps the buffer's write pointer at device + 40.
 ANY360_XDK_BIND_WITH(8268DEF0, D3dDirtyConstants, 40)
 // The same upload for the constants of 4 bytes a bit.
 ANY360_XDK_BIND_WITH(8268DB50, D3dDirtyWords, 40)
 // The D3D runtime's copy of the title's shader constants into the device.
 ANY360_XDK_BIND(8266B808, D3dSetShaderConstants)
-// XAudio's fill of a block's buffer with its value (sub_826B9F70, sub_826B9E38, sub_826B9FD8, sub_826B9F08,
-// sub_826BA040: 256 to 4096 floats) has its replacement in Any360 too and is not bound: no run of the game has called
-// it with both sides compared.
+// XAudio's mix with a volume ramp.
+ANY360_XDK_BIND(826B50B8, XAudioMixRamp)
+// XAudio's fill of a block's buffer with its value, one build a size (floats).
+ANY360_XDK_BIND_WITH(826B9F70, XAudioFill, 256)
+ANY360_XDK_BIND_WITH(826B9E38, XAudioFill, 512)
+ANY360_XDK_BIND_WITH(826B9FD8, XAudioFill, 1024)
+ANY360_XDK_BIND_WITH(826B9F08, XAudioFill, 2048)
+ANY360_XDK_BIND_WITH(826BA040, XAudioFill, 4096)
+
+// The self-test's cases of the replacements the game's runs do not call (any360_d3d_selftest): its recompiled code and
+// the replacement on generated inputs.
+#include "any360/host/xdk_cases.h"
+namespace {
+using namespace any360::host::rexglue::d3d;
+ANY360_D3D_CASE(crt_finite, "_finite", __imp__sub_82654358, CrtDoubleToR3<&any360::xdk::CrtFinite>);
+ANY360_D3D_CASE(crt_isnan, "_isnan", __imp__sub_82654378, CrtDoubleToR3<&any360::xdk::CrtIsnan>);
+ANY360_D3D_CASE(crt_sptype, "_sptype", __imp__sub_8264C998, CrtDoubleToR3<&any360::xdk::CrtSptype>);
+ANY360_D3D_CASE(crt_add_exp, "_add_exp", __imp__sub_8264C938, CrtAddExpCase);
+ANY360_D3D_CASE(crt_wcscmp, "wcscmp", __imp__sub_82783FC8, CrtWcscmpCase);
+ANY360_D3D_CASE(xaudio_fill_256, "XAudio fill 256", __imp__sub_826B9F70, XAudioFillCase<256>);
+ANY360_D3D_CASE(xaudio_fill_512, "XAudio fill 512", __imp__sub_826B9E38, XAudioFillCase<512>);
+ANY360_D3D_CASE(xaudio_fill_1024, "XAudio fill 1024", __imp__sub_826B9FD8, XAudioFillCase<1024>);
+ANY360_D3D_CASE(xaudio_fill_2048, "XAudio fill 2048", __imp__sub_826B9F08, XAudioFillCase<2048>);
+ANY360_D3D_CASE(xaudio_fill_4096, "XAudio fill 4096", __imp__sub_826BA040, XAudioFillCase<4096>);
+}  // namespace

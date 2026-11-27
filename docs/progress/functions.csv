@@ -21512,7 +21512,7 @@ address,module,kind,instructions,state,handler,file
 826440F8,C runtime (CRT),library,2,library,,
 82644100,C runtime (CRT),library,170,library,,
 82644140,C runtime (CRT),library,5,native,CrtToupper,xdk_natives.cpp
-82644158,C runtime (CRT),library,23,library,,
+82644158,C runtime (CRT),library,23,native,CrtWcsncpy,xdk_natives.cpp
 826441B8,C runtime (CRT),library,162,library,,
 82644230,C runtime (CRT),library,142,library,,
 82644310,C runtime (CRT),library,1,library,,
@@ -21684,7 +21684,7 @@ address,module,kind,instructions,state,handler,file
 8264C920,C runtime (CRT),library,6,native,CrtGetExp,xdk_natives.cpp
 8264C938,C runtime (CRT),library,13,library,,
 8264C970,C runtime (CRT),library,9,library,,
-8264C998,C runtime (CRT),library,33,library,,
+8264C998,C runtime (CRT),library,33,native,CrtSptype,xdk_natives.cpp
 8264CA20,C runtime (CRT),library,57,library,,
 8264CB08,C runtime (CRT),library,13,library,,
 8264CB40,C runtime (CRT),library,7,library,,
@@ -21840,7 +21840,7 @@ address,module,kind,instructions,state,handler,file
 82653FB8,C runtime (CRT),library,67,library,,
 826540C8,C runtime (CRT),library,164,library,,
 82654358,C runtime (CRT),library,8,library,,
-82654378,C runtime (CRT),library,17,library,,
+82654378,C runtime (CRT),library,17,native,CrtIsnan,xdk_natives.cpp
 826543C0,C runtime (CRT),library,53,library,,
 82654498,C runtime (CRT),library,149,library,,
 826546F8,C runtime (CRT),library,79,library,,
@@ -24654,7 +24654,7 @@ address,module,kind,instructions,state,handler,file
 826B4BF8,"XDK audio (XAudio, XMA)",library,130,library,,
 826B4E00,"XDK audio (XAudio, XMA)",library,75,library,,
 826B4F30,"XDK audio (XAudio, XMA)",library,97,library,,
-826B50B8,"XDK audio (XAudio, XMA)",library,63,library,,
+826B50B8,"XDK audio (XAudio, XMA)",library,63,native,XAudioMixRamp,xdk_natives.cpp
 826B51B8,"XDK audio (XAudio, XMA)",library,2,library,,
 826B51C0,"XDK audio (XAudio, XMA)",library,2,library,,
 826B5210,"XDK audio (XAudio, XMA)",library,10,library,,
@@ -24900,12 +24900,12 @@ address,module,kind,instructions,state,handler,file
 826B9C40,"XDK audio (XAudio, XMA)",library,10,library,,
 826B9C68,"XDK audio (XAudio, XMA)",library,90,library,,
 826B9DD0,"XDK audio (XAudio, XMA)",library,25,library,,
-826B9E38,"XDK audio (XAudio, XMA)",library,25,library,,
+826B9E38,"XDK audio (XAudio, XMA)",library,25,native,XAudioFill,xdk_natives.cpp
 826B9EA0,"XDK audio (XAudio, XMA)",library,25,library,,
-826B9F08,"XDK audio (XAudio, XMA)",library,25,library,,
-826B9F70,"XDK audio (XAudio, XMA)",library,25,library,,
-826B9FD8,"XDK audio (XAudio, XMA)",library,25,library,,
-826BA040,"XDK audio (XAudio, XMA)",library,25,library,,
+826B9F08,"XDK audio (XAudio, XMA)",library,25,native,XAudioFill,xdk_natives.cpp
+826B9F70,"XDK audio (XAudio, XMA)",library,25,native,XAudioFill,xdk_natives.cpp
+826B9FD8,"XDK audio (XAudio, XMA)",library,25,native,XAudioFill,xdk_natives.cpp
+826BA040,"XDK audio (XAudio, XMA)",library,25,native,XAudioFill,xdk_natives.cpp
 826BA0A8,"XDK audio (XAudio, XMA)",library,1,library,,
 826BA0B0,"XDK audio (XAudio, XMA)",library,1,library,,
 826BA0B8,"XDK audio (XAudio, XMA)",library,1,library,,
@@ -29410,7 +29410,7 @@ address,module,kind,instructions,state,handler,file
 82783178,"XDK Xbox Live and voice (XOnline, XHV)",library,89,library,,
 827832E0,"XDK Xbox Live and voice (XOnline, XHV)",library,88,library,,
 82783440,"XDK Xbox Live and voice (XOnline, XHV)",library,41,library,,
-827834F0,code 827xxxxx,game,21,native,CrtStricmp,xdk_natives.cpp
+827834F0,C runtime (CRT),library,21,native,CrtStricmp,xdk_natives.cpp
 82783548,code 827xxxxx,game,24,recompiled,,
 827835A8,code 827xxxxx,game,74,recompiled,,
 827836D0,code 827xxxxx,game,43,recompiled,,
@@ -29432,7 +29432,7 @@ address,module,kind,instructions,state,handler,file
 82783E68,code 827xxxxx,game,14,recompiled,,
 82783EA0,code 827xxxxx,game,36,recompiled,,
 82783F30,code 827xxxxx,game,37,recompiled,,
-82783FC8,code 827xxxxx,game,17,recompiled,,
+82783FC8,C runtime (CRT),library,17,native,CrtWcscmp,xdk_natives.cpp
 82784010,code 827xxxxx,game,72,recompiled,,
 82784130,code 827xxxxx,game,50,recompiled,,
 827841F8,code 827xxxxx,game,12,recompiled,,

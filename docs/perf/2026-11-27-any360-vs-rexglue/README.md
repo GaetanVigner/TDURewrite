@@ -1,7 +1,7 @@
 # Any360 against ReXGlue, uncapped (2026-11-27)
 
 Test Drive Unlimited, same build (TDURewrite 7d62a9e + the screenshot option, Any360 2f9a9d1), same route, frame
-rate uncapped on both sides, 5 alternating launches a variant. Ryzen 7 7800X3D (logical processors 0-7), RTX 5070 Ti,
+rate uncapped on both sides, 5 alternating launches a variant. Ryzen 7 7800X3D (all 16 logical processors: the runtime resets the launch's affinity mask at startup), RTX 5070 Ti,
 1280x720 (scale 1, no MSAA on both).
 
 | | Average FPS | Median period | 10% low | 1% low | Private memory |
@@ -29,7 +29,7 @@ Rank test, Any360 against ReXGlue: steady FPS z +8.34, 10% low z +8.29, 1% low z
 
 ## Method
 
-- `launch.ps1` (machine lock, cores 0-7, each launch killed after 262 s), `runs.txt` (variant and log per launch),
+- `launch.ps1` (machine lock, a mask of cores 0-7 that the runtime resets to all 16 at startup, each launch killed after 262 s), `runs.txt` (variant and log per launch),
   `logs/` (the full logs).
 - `python -I tools/frame_lows.py runs.txt logs --after 185` (Any360 81b3a4b or later): the periods logged 185 s or
   more after the log's first line (driving), Any360's diagnostics-off lines and the runtime GPU's VdSwap lines.

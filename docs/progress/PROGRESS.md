@@ -1,6 +1,6 @@
 # Test Drive Unlimited: rewrite progress
 
-Generated on 2026-11-27 by [Any360](https://github.com/GaetanVigner/Any360)'s `tools/title_progress.py`. What is still missing, step by step: [ROADMAP.md](ROADMAP.md). Every function: [functions.csv](functions.csv). Counts: [progress.json](progress.json).
+Generated on 2026-11-28 by [Any360](https://github.com/GaetanVigner/Any360)'s `tools/title_progress.py`. What is still missing, step by step: [ROADMAP.md](ROADMAP.md). Every function: [functions.csv](functions.csv). Counts: [progress.json](progress.json).
 
 ![Progress](progress.svg)
 
@@ -11,10 +11,10 @@ Generated on 2026-11-27 by [Any360](https://github.com/GaetanVigner/Any360)'s `t
 | System calls on `any360::sys` | 303 | 327 | 93% | all eight groups, opt-in on `master`: `--any360_sys_groups=stateless,files,objects,threads,memory,xam,input,audio`; checked from boot through the intro videos, the title screen, a save loaded and the house menu to driving on the island (`--any360_sys_trace=true`, 2026-11-27): two calls still reach the runtime there, `XamEnumerate` and `NtClose` on the null handle `XamUserCreateStatsEnumerator` leaves; sound and rumble still to check by ear and hand |
 | Graphics on `any360::gfx` (GPU features Any360 handles) | 283 | 323 | 88% | opt-in on `master`: `--any360_gpu=true` (`--any360_gpu_scale=2 --any360_gpu_msaa=4`; `--any360_gpu_vblank_hz=1000` lifts the 30 FPS lock); uncapped, driving at scale 1 on an RTX 5070 Ti: 115 FPS (1% low 101), 3.3 GB private, against 72 FPS (1% low 34) and 17-19 GB growing for the runtime's GPU (2026-11-27, 5 launches each) |
 | Host (XEX loader, address space, threads, window, input, audio output) | 0 | 2 | 0% | ReXGlue's host runs the title; Any360 steps 13 and 14 |
-| Game functions rewritten in C++ | 1 | 31,877 | 0.00% | 0 more verified against the original in the sandbox |
-| Library functions (SDK, middleware) replaced | 23 | 4,864 | 0.5% | replaced as units, not decompiled |
+| Game functions rewritten in C++ | 0 | 31,875 | 0% | 0 more verified against the original in the sandbox |
+| Library functions (SDK, middleware) replaced | 34 | 4,866 | 0.7% | replaced as units, not decompiled |
 | Middleware functions (third-party physics, AI, scripting, video) | - | 8,361 | - | kept recompiled or relinked from the vendor's library, not rewritten |
-| Instructions of rewritten functions | 1,504 | 1,999,820 | 0.08% | PowerPC instructions of the original |
+| Instructions of rewritten functions | 1,782 | 1,999,820 | 0.09% | PowerPC instructions of the original |
 
 ## System calls
 
@@ -395,18 +395,18 @@ Every function of the executable by module (named address ranges; the rest by 1 
 | code 829xxxxx | game | 3,669 | 259,575 | 0 | 0 | 3,669 | 0% |
 | code 824xxxxx | game | 9,336 | 258,686 | 0 | 0 | 9,336 | 0% |
 | code 82Bxxxxx | game | 2,983 | 127,646 | 0 | 0 | 2,983 | 0% |
-| code 827xxxxx | game | 2,193 | 125,507 | 1 | 0 | 2,192 | 0.05% |
+| code 827xxxxx | game | 2,191 | 125,469 | 0 | 0 | 2,191 | 0% |
 | code 826xxxxx | game | 2,318 | 103,367 | 0 | 0 | 2,318 | 0% |
 | code 825xxxxx | game | 1,842 | 62,650 | 0 | 0 | 1,842 | 0% |
-| XDK audio (XAudio, XMA) | library | 1,388 | 53,897 | 0 | 0 | 1,388 | 0% |
+| XDK audio (XAudio, XMA) | library | 1,388 | 53,897 | 6 | 0 | 1,382 | 0.4% |
 | XDK Xbox Live and voice (XOnline, XHV) | library | 956 | 49,754 | 0 | 0 | 956 | 0% |
 | XDK D3D runtime | library | 1,436 | 46,565 | 4 | 0 | 1,432 | 0.3% |
-| C runtime (CRT) | library | 760 | 45,321 | 18 | 0 | 742 | 2.4% |
+| C runtime (CRT) | library | 762 | 45,359 | 23 | 0 | 739 | 3.0% |
 | code 823xxxxx | game | 2,895 | 31,620 | 0 | 0 | 2,895 | 0% |
 | Bink video | middleware | 205 | 19,653 | 0 | 0 | 205 | 0% |
 | XAPI (Win32 layer over the kernel and XAM) | library | 324 | 11,057 | 1 | 0 | 323 | 0.3% |
 
-<details><summary>The 24 rewritten functions</summary>
+<details><summary>The 34 rewritten functions</summary>
 
 | Address | Module | Instructions | Handler | File |
 |---|---|---|---|---|
@@ -420,6 +420,7 @@ Every function of the executable by module (named address ranges; the rest by 1 
 | `826431B0` | C runtime (CRT) | 9 | `CrtWcslen` | xdk_natives.cpp |
 | `82644078` | C runtime (CRT) | 166 | `CrtStrstr` | xdk_natives.cpp |
 | `82644140` | C runtime (CRT) | 5 | `CrtToupper` | xdk_natives.cpp |
+| `82644158` | C runtime (CRT) | 23 | `CrtWcsncpy` | xdk_natives.cpp |
 | `82644930` | C runtime (CRT) | 108 | `CrtMemmove` | xdk_natives.cpp |
 | `82645BF0` | C runtime (CRT) | 251 | `CrtMemcpy` | xdk_natives.cpp |
 | `82646010` | C runtime (CRT) | 173 | `CrtCopyForward` | xdk_natives.cpp |
@@ -428,12 +429,21 @@ Every function of the executable by module (named address ranges; the rest by 1 
 | `826467A0` | C runtime (CRT) | 10 | `CrtSetExp` | xdk_natives.cpp |
 | `8264C8F8` | C runtime (CRT) | 10 | `CrtSetExp` | xdk_natives.cpp |
 | `8264C920` | C runtime (CRT) | 6 | `CrtGetExp` | xdk_natives.cpp |
+| `8264C998` | C runtime (CRT) | 33 | `CrtSptype` | xdk_natives.cpp |
+| `82654378` | C runtime (CRT) | 17 | `CrtIsnan` | xdk_natives.cpp |
 | `8266B808` | XDK D3D runtime | 64 | `D3dSetShaderConstants` | xdk_natives.cpp |
 | `826737B8` | XDK D3D runtime | 45 | `D3dGpuWaitStep` | xdk_natives.cpp |
 | `8268DB50` | XDK D3D runtime | 48 | `D3dDirtyWords` | xdk_natives.cpp |
 | `8268DEF0` | XDK D3D runtime | 91 | `D3dDirtyConstants` | xdk_natives.cpp |
 | `82696950` | XAPI (Win32 layer over the kernel and XAM) | 204 | `XMemCpy` | xdk_natives.cpp |
-| `827834F0` | code 827xxxxx | 21 | `CrtStricmp` | xdk_natives.cpp |
+| `826B50B8` | XDK audio (XAudio, XMA) | 63 | `XAudioMixRamp` | xdk_natives.cpp |
+| `826B9E38` | XDK audio (XAudio, XMA) | 25 | `XAudioFill` | xdk_natives.cpp |
+| `826B9F08` | XDK audio (XAudio, XMA) | 25 | `XAudioFill` | xdk_natives.cpp |
+| `826B9F70` | XDK audio (XAudio, XMA) | 25 | `XAudioFill` | xdk_natives.cpp |
+| `826B9FD8` | XDK audio (XAudio, XMA) | 25 | `XAudioFill` | xdk_natives.cpp |
+| `826BA040` | XDK audio (XAudio, XMA) | 25 | `XAudioFill` | xdk_natives.cpp |
+| `827834F0` | C runtime (CRT) | 21 | `CrtStricmp` | xdk_natives.cpp |
+| `82783FC8` | C runtime (CRT) | 17 | `CrtWcscmp` | xdk_natives.cpp |
 
 </details>
 

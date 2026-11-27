@@ -1,0 +1,17 @@
+Any360: 5 launches
+  tdu_138.log: dip 1% low 100 FPS, slowest 10.3 ms, 0 over 16.7 ms, texture loading up to 0.00 ms a frame; steady FPS 116-118
+  tdu_140.log: dip 1% low 102 FPS, slowest 11.5 ms, 0 over 16.7 ms, texture loading up to 0.00 ms a frame; steady FPS 114-116
+  tdu_142.log: dip 1% low 86 FPS, slowest 14.3 ms, 0 over 16.7 ms, texture loading up to 0.00 ms a frame; steady FPS 104-113
+  tdu_144.log: dip 1% low 100 FPS, slowest 15.8 ms, 0 over 16.7 ms, texture loading up to 0.00 ms a frame; steady FPS 117-121
+  tdu_146.log: dip 1% low 99 FPS, slowest 12.1 ms, 0 over 16.7 ms, texture loading up to 0.00 ms a frame; steady FPS 114-121
+  steady (35 periods): FPS mean 115.0 (median 115.6, min 103.7), 10% low mean 110.3 (median 111.5, min 99.5), 1% low mean 101.2 (median 102.5, min 87.0); process private memory mean 3338 MB, max 3349 MB
+  dips (5): 1% low mean 97.1, slowest frame mean 12.8 ms, over 16.7 ms mean 0.0, texture loading mean 0.00 ms a frame
+ReXGlue: 5 launches
+  tdu_139.log: dip 1% low 24 FPS, slowest 115.0 ms, 99 over 16.7 ms, texture loading up to 0.00 ms a frame; steady FPS 44-100
+  tdu_141.log: dip 1% low 24 FPS, slowest 42.1 ms, 162 over 16.7 ms, texture loading up to 0.00 ms a frame; steady FPS 40-111
+  tdu_143.log: dip 1% low 23 FPS, slowest 50.5 ms, 53 over 16.7 ms, texture loading up to 0.00 ms a frame; steady FPS 45-91
+  tdu_145.log: dip 1% low 21 FPS, slowest 48.2 ms, 169 over 16.7 ms, texture loading up to 0.00 ms a frame; steady FPS 39-98
+  tdu_147.log: dip 1% low 20 FPS, slowest 70.9 ms, 174 over 16.7 ms, texture loading up to 0.00 ms a frame; steady FPS 38-64
+  steady (75 periods): FPS mean 71.7 (median 77.8, min 37.6), 10% low mean 54.2 (median 49.1, min 27.4), 1% low mean 34.1 (median 28.8, min 20.8); process private memory mean 17152 MB, max 19496 MB
+  dips (5): 1% low mean 22.5, slowest frame mean 65.3 ms, over 16.7 ms mean 131.4, texture loading mean 0.00 ms a frame
+Any360 against ReXGlue: steady fps z +8.34, p10 z +8.29, p1 z +8.33; dips 1% low z +2.61, slowest z -2.61

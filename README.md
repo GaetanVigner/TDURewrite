@@ -5,6 +5,20 @@
 <img src="docs/title-any360.jpg" width="49%" alt="The title screen, drawn by Any360's Vulkan renderer"/>
 </p>
 
+> [!IMPORTANT]
+> ### Benchmark: Any360 against ReXGlue (2026-11-27)
+>
+> Same build, same driving route, frame rate uncapped on both sides, 5 alternating launches each.
+>
+> | | Average FPS | Median period | 10% low | 1% low | Private memory |
+> |---|---:|---:|---:|---:|---:|
+> | **Any360** (`--any360_gpu=true`, all 8 `any360::sys` groups) | **115.0** | **115.6** | **110.3** | **101.2** | **3.3 GB**, flat |
+> | ReXGlue (its own GPU and kernel) | 71.7 | 77.8 | 54.2 | 34.1 | 17.2 GB mean, 19.5 GB max, growing |
+>
+> Any360 [2f9a9d1](https://github.com/GaetanVigner/Any360/commit/2f9a9d1), Ryzen 7 7800X3D (logical processors 0-7),
+> RTX 5070 Ti, 1280x720, no MSAA. Rank test: z +8.3 on the average and both lows. Method and raw logs:
+> [docs/perf/2026-11-27-any360-vs-rexglue](docs/perf/2026-11-27-any360-vs-rexglue/README.md).
+
 **Test Drive Unlimited (Xbox 360, 2006), statically recompiled to native PC code and rewritten, step by step, onto [Any360](https://github.com/GaetanVigner/Any360).** It continues the TDU rewrite project as a recompilation of the Xbox 360 version with ReXGlue v0.10.0, then moves it off the emulation layers.
 
 **No game data and no game binaries are here.** You need your own copy of the game (European disc, title 494707D4); the recompiled C++ is generated on your machine from your disc's `default.xex`.
@@ -21,7 +35,7 @@
 | **Host** | ReXGlue's loader, threads and window; Any360's own host is not started |
 | **Game code** | 1 of 31,877 functions rewritten in C++ (0.00%) |
 
-Updated 2026-11-12. Every system call, module and rewritten function: [PROGRESS.md](docs/progress/PROGRESS.md). What is missing, step by step: [ROADMAP.md](docs/progress/ROADMAP.md). Function by function: [functions.csv](docs/progress/functions.csv).
+Updated 2026-11-27. Every system call, module and rewritten function: [PROGRESS.md](docs/progress/PROGRESS.md). What is missing, step by step: [ROADMAP.md](docs/progress/ROADMAP.md). Function by function: [functions.csv](docs/progress/functions.csv).
 <!-- progress:end -->
 
 ## What this is
@@ -31,8 +45,8 @@ The game's PowerPC executable is translated ahead of time into C++ ([ReXGlue](ht
 | Step | What runs under the game | State here |
 |---|---|---|
 | Recompiled | ReXGlue's runtime: emulated kernel, emulated GPU | `default.xex` fully translated (45,102 functions; 53 the analyzer misses are declared in [config/](config/)); boots to the title, plays its intro videos and drives on the island, with sound and gamepad |
-| System calls | `any360::sys`, native implementations of the Xbox 360 system calls | all eight groups, opt-in on `master`: `--any360_sys_groups=stateless,files,objects,threads,memory,xam,input,audio`; checked from boot through the intro videos to the title screen (no call reaches ReXGlue's kernel there); driving, saves and sound still to check in game |
-| Graphics | `any360::gfx`, a Vulkan renderer fed by the game's own draw commands | opt-in on `master`: `--any360_gpu=true` (`--any360_gpu_scale=2 --any360_gpu_msaa=4`, `--any360_gpu_vblank_hz=240` for up to 120 FPS); 83-115 FPS driving at 2x with 4x MSAA on an RTX 5070 Ti, against 54-85 for the runtime's GPU at 2x |
+| System calls | `any360::sys`, native implementations of the Xbox 360 system calls | all eight groups, opt-in on `master`: `--any360_sys_groups=stateless,files,objects,threads,memory,xam,input,audio`; checked from boot through the title screen, a save loaded and the house menu to driving on the island (two calls still reach ReXGlue's kernel there: `XamEnumerate` and `NtClose` on a null stats enumerator); sound and rumble still to check |
+| Graphics | `any360::gfx`, a Vulkan renderer fed by the game's own draw commands | opt-in on `master`: `--any360_gpu=true` (`--any360_gpu_scale=2 --any360_gpu_msaa=4`; `--any360_gpu_vblank_hz=1000` lifts the 30 FPS lock); 115 FPS driving uncapped at 1x on an RTX 5070 Ti, against 72 for the runtime's GPU (benchmark above) |
 | Library functions | `any360::xdk`, host versions of the XDK functions linked into the game | five memory functions (`memcpy`, its forward copy, `memmove`, `memset`, the vector copy), compared with the game's own code on every call in game (14 M calls past the title screen for the first three) |
 | Game code | C++ rewritten function by function, checked against the recompiled original | not started (the count is in the table above) |
 
@@ -66,7 +80,7 @@ tdu.exe --any360_gpu=true --any360_sys_groups=stateless,files,objects,threads,me
 
 `--any360_gpu=true` draws the whole game through `any360::gfx` (`--any360_gpu_scale=2 --any360_gpu_msaa=4`; `--any360_gpu_vblank_hz=240` for frame rates above 60); `--any360_sys_groups` puts the Xbox system calls on `any360::sys` (checked to the title screen; driving, saves and sound still to check). The library functions run on `any360::xdk` by default (`--any360_xdk_natives=false` runs the game's own; `--any360_xdk_verify=true` runs both on every call and compares them).
 
-`--any360_fps_overlay=true` draws Any360's frame counter over the top-left corner of the picture (frames per second, frame time and the slowest of the last half second, median and 10% / 1% lows of the last 512 frames, GPU time a frame): the same for every game on `any360::gfx`, off by default and free when off. The Any360Launcher's Video options switch it on. In game, Any360's keys: F2 shows or hides it, F5 saves a screenshot, F6 profiles every thread, F8 records a GPU capture (docs/GFX.md in Any360).
+`--any360_fps_overlay=true` draws Any360's frame counter over the top-left corner of the picture (frames per second, frame time and the slowest of the last half second, median and 10% / 1% lows of the last 512 frames, GPU time a frame): the same for every game on `any360::gfx`, off by default and free when off. The Any360Launcher's Video options switch it on. In game, Any360's keys: F2 shows or hides it, F5 saves a screenshot, F6 profiles every thread, F8 records a GPU capture (docs/GFX.md in Any360). For scripted runs, `--any360_gpu_screenshot=<file>.png` writes the presented frame to that file each time `<file>.png.go` appears.
 
 ## Building
 

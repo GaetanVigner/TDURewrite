@@ -47,6 +47,8 @@ REXCVAR_DEFINE_STRING(any360_gpu_profile, "", "GPU",
 REXCVAR_DEFINE_STRING(any360_gpu_capture, "", "GPU",
                       "Any360: a capture file for gfx_replay, recorded when <file>.go appears (empty: none)");
 REXCVAR_DEFINE_INT32(any360_gpu_capture_kicks, 60, "GPU", "Any360: ring kicks a capture records");
+REXCVAR_DEFINE_STRING(any360_gpu_screenshot, "", "GPU",
+                      "Any360: a PNG file the presented frame is written to when <file>.go appears (empty: none)");
 
 // The GPU system calls, overridden in the executable: the runtime's until StartGraphics succeeds, Any360's after.
 ANY360_REXGLUE_GRAPHICS_EXPORTS()
@@ -59,11 +61,10 @@ namespace tdu {
 void StartAny360GraphicsIfAsked() {
   const auto log = [](const std::string& line) { REXLOG_INFO("{}", line); };
   if (!REXCVAR_GET(any360_gpu)) {
-    // The runtime's GPU, measured as the binding measures its own: the same profile and frame rate report.
-    if (!REXCVAR_GET(any360_gpu_profile).empty()) {
-      any360::host::rexglue::StartSampling(REXCVAR_GET(any360_gpu_profile));
-      any360::host::rexglue::ReportRuntimeFrames(log);
-    }
+    // The runtime's GPU, measured as the binding measures its own: the same frame rate report (frame times, lows,
+    // private memory, every 5 s) and, when asked, the same profile.
+    if (!REXCVAR_GET(any360_gpu_profile).empty()) any360::host::rexglue::StartSampling(REXCVAR_GET(any360_gpu_profile));
+    any360::host::rexglue::ReportRuntimeFrames(log);
     return;
   }
   any360::host::rexglue::GraphicsOptions options;
@@ -84,6 +85,7 @@ void StartAny360GraphicsIfAsked() {
   options.profile_path = REXCVAR_GET(any360_gpu_profile);
   options.capture_path = REXCVAR_GET(any360_gpu_capture);
   options.capture_kicks = uint32_t(std::max(1, REXCVAR_GET(any360_gpu_capture_kicks)));
+  options.screenshot_path = REXCVAR_GET(any360_gpu_screenshot);
   options.log = log;
   std::string error;
   if (any360::host::rexglue::StartGraphics(options, error)) {

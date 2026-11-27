@@ -1,6 +1,6 @@
 # Test Drive Unlimited: rewrite progress
 
-Generated on 2026-11-12 by [Any360](https://github.com/GaetanVigner/Any360)'s `tools/title_progress.py`. What is still missing, step by step: [ROADMAP.md](ROADMAP.md). Every function: [functions.csv](functions.csv). Counts: [progress.json](progress.json).
+Generated on 2026-11-27 by [Any360](https://github.com/GaetanVigner/Any360)'s `tools/title_progress.py`. What is still missing, step by step: [ROADMAP.md](ROADMAP.md). Every function: [functions.csv](functions.csv). Counts: [progress.json](progress.json).
 
 ![Progress](progress.svg)
 
@@ -8,8 +8,8 @@ Generated on 2026-11-12 by [Any360](https://github.com/GaetanVigner/Any360)'s `t
 
 | Axis | Done | Of | Share | Notes |
 |---|---|---|---|---|
-| System calls on `any360::sys` | 303 | 327 | 93% | all eight groups, opt-in on `master`: `--any360_sys_groups=stateless,files,objects,threads,memory,xam,input,audio`; checked from boot through the intro videos to the title screen (no call reaches ReXGlue's kernel there); driving, saves and sound still to check in game |
-| Graphics on `any360::gfx` (GPU features Any360 handles) | 283 | 323 | 88% | opt-in on `master`: `--any360_gpu=true` (`--any360_gpu_scale=2 --any360_gpu_msaa=4`, `--any360_gpu_vblank_hz=240` for up to 120 FPS); 83-115 FPS driving at 2x with 4x MSAA on an RTX 5070 Ti, against 54-85 for the runtime's GPU at 2x |
+| System calls on `any360::sys` | 303 | 327 | 93% | all eight groups, opt-in on `master`: `--any360_sys_groups=stateless,files,objects,threads,memory,xam,input,audio`; checked from boot through the intro videos, the title screen, a save loaded and the house menu to driving on the island (`--any360_sys_trace=true`, 2026-11-27): two calls still reach the runtime there, `XamEnumerate` and `NtClose` on the null handle `XamUserCreateStatsEnumerator` leaves; sound and rumble still to check by ear and hand |
+| Graphics on `any360::gfx` (GPU features Any360 handles) | 283 | 323 | 88% | opt-in on `master`: `--any360_gpu=true` (`--any360_gpu_scale=2 --any360_gpu_msaa=4`; `--any360_gpu_vblank_hz=1000` lifts the 30 FPS lock); uncapped, driving at scale 1 on an RTX 5070 Ti: 115 FPS (1% low 101), 3.3 GB private, against 72 FPS (1% low 34) and 17-19 GB growing for the runtime's GPU (2026-11-27, 5 launches each) |
 | Host (XEX loader, address space, threads, window, input, audio output) | 0 | 2 | 0% | ReXGlue's host runs the title; Any360 steps 13 and 14 |
 | Game functions rewritten in C++ | 1 | 31,877 | 0.00% | 0 more verified against the original in the sandbox |
 | Library functions (SDK, middleware) replaced | 23 | 4,864 | 0.5% | replaced as units, not decompiled |
@@ -368,7 +368,7 @@ The 327 kernel and XAM functions the title imports, by the group a title switche
 
 ## Graphics
 
-What `any360::gfx` handles of the Xbox 360 GPU (the same for every title; a title uses a part of it). In this title: opt-in on `master`: `--any360_gpu=true` (`--any360_gpu_scale=2 --any360_gpu_msaa=4`, `--any360_gpu_vblank_hz=240` for up to 120 FPS); 83-115 FPS driving at 2x with 4x MSAA on an RTX 5070 Ti, against 54-85 for the runtime's GPU at 2x.
+What `any360::gfx` handles of the Xbox 360 GPU (the same for every title; a title uses a part of it). In this title: opt-in on `master`: `--any360_gpu=true` (`--any360_gpu_scale=2 --any360_gpu_msaa=4`; `--any360_gpu_vblank_hz=1000` lifts the 30 FPS lock); uncapped, driving at scale 1 on an RTX 5070 Ti: 115 FPS (1% low 101), 3.3 GB private, against 72 FPS (1% low 34) and 17-19 GB growing for the runtime's GPU (2026-11-27, 5 launches each).
 
 | Family | Native | Not yet | Total |
 |---|---|---|---|
@@ -446,7 +446,7 @@ Any360's own steps towards hosting a title without ReXGlue's runtime ([Any360 RE
 | 9 | no call reaching the runtime: every path, the raw hard drive devices, the profile defaults on `any360::sys` | done (Crackdown; the host stays ReXGlue's until step 13) |
 | 10 | a second title (The Simpsons Game) on the full system binding | done (all groups, levels, saves, sound, gamepad) |
 | 11 | third and fourth titles (Test Drive Unlimited, Sonic 06) | partial: Test Drive Unlimited boots to its title screen with all eight groups on `any360::sys` and no call reaching the runtime; gameplay, saves and sound not checked yet; Sonic 06 not started |
-| 12 | paths no title took yet: `XMA*` decoding, STFS packages, several users, guide UIs, Live offline, xbdm | partial: 602 of 2,914 exports native with scenario tests, none of the 2,294 reference stubs sorted |
+| 12 | paths no title took yet: `XMA*` decoding, STFS packages, several users, guide UIs, Live offline, xbdm | partial: 850 of 2,914 exports native with scenario tests; the reference stubs sorted ([docs/SYS_STUBS.md](https://github.com/GaetanVigner/Any360/blob/main/docs/SYS_STUBS.md)): none left to implement, all 114 Xenia stubs too answered natively (avatars, media, profile and user, content, information, Kinect, settings and others, guide screens, modules, input, network and notifications, the SMC and the last ones) (2 object and module calls, 10 content, network, callback and thread look-up calls, 9 language, memory, Xapi, IPTV and LZX decompression calls, 24 cryptography and key calls, 14 Win32 forms, 19 XAM information calls, 11 kernel calls, 16 guide and Kinect calls and 17 profile calls done), 255 debug only, 1,799 never seen |
 | 13 | Any360's own host: XEX loader, address space, threads, guest dispatch, MMIO, devices | not started |
 | 14 | the platform layer: window, input, audio, presenter on Windows and Linux (Steam Deck) | partial: SDL3 audio output only |
 | 15 | graphics through `any360::gfx` only, no `rexgpu-xenos` | partial: three titles draw through `any360::gfx`, the GPU session's plan in [docs/GFX.md](https://github.com/GaetanVigner/Any360/blob/main/docs/GFX.md) |

@@ -1,0 +1,107 @@
+[2026-11-27 04:26:01.036] [info] [gpu] [t15532] DXGI adapter: NVIDIA GeForce RTX 5070 Ti (vendor 0x10DE, device 0x2C05)
+[2026-11-27 04:26:01.218] [info] [gpu] [t15532] Direct3D 12 device and OS features:
+* Max GPU virtual address bits per resource: 40
+* Non-zeroed heap creation: yes
+* Pixel-shader-specified stencil reference: no
+* Programmable sample positions: tier 2
+* Rasterizer-ordered views: yes
+* Resource binding: tier 3
+* Tiled resources: tier 4
+* Unaligned block-compressed textures: yes
+[2026-11-27 04:26:01.280] [info] [sys] [t15532] Guest memory arena mapped: virtual base 0x0000000100000000, physical base 0x0000000200000000
+[2026-11-27 04:26:01.338] [info] [core] [t15532] Function table initialized for module: code=823E0000-82B9313C, image=82000000-83730000
+[2026-11-27 04:26:01.382] [info] [gpu] [t42696] Guest 2x MSAA render targets: host 2x MSAA
+[2026-11-27 04:26:01.505] [warning] [core] [t15532] SDL GameControllerDB: file 'gamecontrollerdb.txt' does not exist.
+[2026-11-27 04:26:01.505] [info] [core] [t15532] SDL input driver initialized successfully
+[2026-11-27 04:26:01.578] [info] [core] [t15532] Any360 system: XAM content at %TEMP%\tdu-user\B13EBABEBABEBABE\494707D4, profile settings at %TEMP%\tdu-user\494707D4\profile\User, profile User
+[2026-11-27 04:26:01.578] [info] [core] [t15532] Any360 system: input script of 8 presses on the first controller
+[2026-11-27 04:26:01.578] [info] [core] [t15532] Any360 system: keyboard and mouse layout: 26 settings (Any360's)
+[2026-11-27 04:26:01.578] [info] [core] [t15532] Any360 system: input on any360::sys (0 variable imports)
+[2026-11-27 04:26:01.578] [info] [core] [t12972] Any360 system: input: None (keyboard and mouse) is player 1
+[2026-11-27 04:26:01.581] [info] [core] [t15532] Initializing shader storage for title 494707D4...
+[2026-11-27 04:26:01.589] [info] [gpu] [t42696] Translated 292 shaders from the storage in 4 milliseconds
+[2026-11-27 04:26:01.615] [info] [gpu] [t42696] Created 486 graphics pipelines (not including reading the descriptions) from the storage in 26 milliseconds
+[2026-11-27 04:26:01.616] [info] [core] [t35808] Any360 xdk: bound library functions run their own code (any360_xdk_natives off)
+[2026-11-27 04:26:01.629] [info] [gpu] [t35808] SetInterruptCallback(8267F478, 40001A00)
+[2026-11-27 04:26:01.630] [info] [gpu] [t42696] gpu_cached_indirect_buffers on
+[2026-11-27 04:26:01.707] [info] [apu] [t35808] audio endpoint 'Casque (WH-1000XM4)': 2 ch, 48000 Hz, format 0x8120; submitting 2 ch
+[2026-11-27 04:26:01.746] [info] [core] [t45016] Any360 d3d: the GPU wait step sleeps until the GPU moves (at most 2000 us)
+[2026-11-27 04:26:06.782] [info] [core] [t38524] Any360: the runtime's GPU: 281.2 FPS (VdSwap calls); frame times: median 2.81 ms (355.8 FPS), 10% low 256.4 FPS, 1% low 19.7 FPS; slowest frame 51.2 ms, 30 over 16.7 ms; 1175 MB private
+[2026-11-27 04:26:11.453] [info] [core] [t45016] Any360 d3d: GPU wait steps in 10 s: 210599936 (0 slept, 0 of them to the time-out)
+[2026-11-27 04:26:11.782] [info] [core] [t45016] Any360: the runtime's GPU: 447.4 FPS (VdSwap calls); frame times: median 1.54 ms (647.2 FPS), 10% low 323.8 FPS, 1% low 300.0 FPS; slowest frame 51.0 ms, 11 over 16.7 ms; 1312 MB private
+[2026-11-27 04:26:16.784] [info] [core] [t45016] Any360: the runtime's GPU: 500.0 FPS (VdSwap calls); frame times: median 1.82 ms (548.2 FPS), 10% low 369.7 FPS, 1% low 323.2 FPS; slowest frame 3.2 ms, 0 over 16.7 ms; 1317 MB private
+[2026-11-27 04:26:21.453] [info] [core] [t45016] Any360 d3d: GPU wait steps in 10 s: 306491392 (0 slept, 0 of them to the time-out)
+[2026-11-27 04:26:21.785] [info] [core] [t45016] Any360: the runtime's GPU: 499.9 FPS (VdSwap calls); frame times: median 1.89 ms (527.7 FPS), 10% low 384.9 FPS, 1% low 328.3 FPS; slowest frame 3.5 ms, 0 over 16.7 ms; 1317 MB private
+[2026-11-27 04:26:26.786] [info] [core] [t45016] Any360: the runtime's GPU: 500.1 FPS (VdSwap calls); frame times: median 1.54 ms (650.4 FPS), 10% low 324.8 FPS, 1% low 304.6 FPS; slowest frame 3.6 ms, 0 over 16.7 ms; 1321 MB private
+[2026-11-27 04:26:31.453] [info] [core] [t45016] Any360 d3d: GPU wait steps in 10 s: 351940608 (0 slept, 0 of them to the time-out)
+[2026-11-27 04:26:31.786] [info] [core] [t45016] Any360: the runtime's GPU: 480.8 FPS (VdSwap calls); frame times: median 1.54 ms (649.6 FPS), 10% low 325.4 FPS, 1% low 303.9 FPS; slowest frame 97.2 ms, 4 over 16.7 ms; 1334 MB private
+[2026-11-27 04:26:36.791] [info] [core] [t45016] Any360: the runtime's GPU: 107.5 FPS (VdSwap calls); frame times: median 11.04 ms (90.6 FPS), 10% low 83.4 FPS, 1% low 19.6 FPS; slowest frame 122.6 ms, 16 over 16.7 ms; 2250 MB private
+[2026-11-27 04:26:41.453] [info] [core] [t45016] Any360 d3d: GPU wait steps in 10 s: 275054592 (0 slept, 0 of them to the time-out)
+[2026-11-27 04:26:41.791] [info] [core] [t45016] Any360: the runtime's GPU: 96.2 FPS (VdSwap calls); frame times: median 10.21 ms (97.9 FPS), 10% low 84.4 FPS, 1% low 77.9 FPS; slowest frame 19.7 ms, 1 over 16.7 ms; 3167 MB private
+[2026-11-27 04:26:46.792] [info] [core] [t45016] Any360: the runtime's GPU: 100.8 FPS (VdSwap calls); frame times: median 9.83 ms (101.7 FPS), 10% low 91.9 FPS, 1% low 86.6 FPS; slowest frame 13.1 ms, 0 over 16.7 ms; 4209 MB private
+[2026-11-27 04:26:51.453] [info] [core] [t45016] Any360 d3d: GPU wait steps in 10 s: 304111616 (0 slept, 0 of them to the time-out)
+[2026-11-27 04:26:51.799] [info] [core] [t45016] Any360: the runtime's GPU: 93.1 FPS (VdSwap calls); frame times: median 10.76 ms (92.9 FPS), 10% low 89.1 FPS, 1% low 85.1 FPS; slowest frame 12.4 ms, 0 over 16.7 ms; 5140 MB private
+[2026-11-27 04:26:56.809] [info] [core] [t45016] Any360: the runtime's GPU: 80.2 FPS (VdSwap calls); frame times: median 13.05 ms (76.6 FPS), 10% low 68.3 FPS, 1% low 63.1 FPS; slowest frame 17.4 ms, 1 over 16.7 ms; 6131 MB private
+[2026-11-27 04:27:01.453] [info] [core] [t45016] Any360 d3d: GPU wait steps in 10 s: 319594496 (0 slept, 0 of them to the time-out)
+[2026-11-27 04:27:01.816] [info] [core] [t45016] Any360: the runtime's GPU: 62.1 FPS (VdSwap calls); frame times: median 16.12 ms (62.0 FPS), 10% low 56.4 FPS, 1% low 52.1 FPS; slowest frame 20.0 ms, 105 over 16.7 ms; 6945 MB private
+[2026-11-27 04:27:06.818] [info] [core] [t45016] Any360: the runtime's GPU: 73.8 FPS (VdSwap calls); frame times: median 14.10 ms (70.9 FPS), 10% low 55.7 FPS, 1% low 50.5 FPS; slowest frame 20.8 ms, 92 over 16.7 ms; 7456 MB private
+[2026-11-27 04:27:11.453] [info] [core] [t45016] Any360 d3d: GPU wait steps in 10 s: 322277376 (0 slept, 0 of them to the time-out)
+[2026-11-27 04:27:11.826] [info] [core] [t45016] Any360: the runtime's GPU: 76.7 FPS (VdSwap calls); frame times: median 12.97 ms (77.1 FPS), 10% low 62.6 FPS, 1% low 55.0 FPS; slowest frame 19.3 ms, 20 over 16.7 ms; 7939 MB private
+[2026-11-27 04:27:16.836] [info] [core] [t45016] Any360: the runtime's GPU: 71.3 FPS (VdSwap calls); frame times: median 13.74 ms (72.8 FPS), 10% low 60.2 FPS, 1% low 51.8 FPS; slowest frame 20.2 ms, 35 over 16.7 ms; 8458 MB private
+[2026-11-27 04:27:21.453] [info] [core] [t45016] Any360 d3d: GPU wait steps in 10 s: 331235328 (0 slept, 0 of them to the time-out)
+[2026-11-27 04:27:21.842] [info] [core] [t45016] Any360: the runtime's GPU: 76.5 FPS (VdSwap calls); frame times: median 12.76 ms (78.4 FPS), 10% low 63.5 FPS, 1% low 54.5 FPS; slowest frame 19.3 ms, 19 over 16.7 ms; 8895 MB private
+[2026-11-27 04:27:26.852] [info] [core] [t45016] Any360: the runtime's GPU: 55.7 FPS (VdSwap calls); frame times: median 17.95 ms (55.7 FPS), 10% low 45.2 FPS, 1% low 38.8 FPS; slowest frame 27.4 ms, 172 over 16.7 ms; 9413 MB private
+[2026-11-27 04:27:31.453] [info] [core] [t45016] Any360 d3d: GPU wait steps in 10 s: 339152896 (0 slept, 0 of them to the time-out)
+[2026-11-27 04:27:31.862] [info] [core] [t45016] Any360: the runtime's GPU: 51.9 FPS (VdSwap calls); frame times: median 19.59 ms (51.1 FPS), 10% low 40.0 FPS, 1% low 33.6 FPS; slowest frame 31.4 ms, 196 over 16.7 ms; 9853 MB private
+[2026-11-27 04:27:36.862] [info] [core] [t45016] Any360: the runtime's GPU: 49.2 FPS (VdSwap calls); frame times: median 20.27 ms (49.3 FPS), 10% low 38.6 FPS, 1% low 34.0 FPS; slowest frame 34.8 ms, 196 over 16.7 ms; 10314 MB private
+[2026-11-27 04:27:41.453] [info] [core] [t45016] Any360 d3d: GPU wait steps in 10 s: 342900736 (0 slept, 0 of them to the time-out)
+[2026-11-27 04:27:41.865] [info] [core] [t45016] Any360: the runtime's GPU: 64.8 FPS (VdSwap calls); frame times: median 15.45 ms (64.7 FPS), 10% low 50.3 FPS, 1% low 43.1 FPS; slowest frame 24.2 ms, 124 over 16.7 ms; 10720 MB private
+[2026-11-27 04:27:46.868] [info] [core] [t45016] Any360: the runtime's GPU: 54.4 FPS (VdSwap calls); frame times: median 18.02 ms (55.5 FPS), 10% low 43.2 FPS, 1% low 38.7 FPS; slowest frame 29.1 ms, 177 over 16.7 ms; 11136 MB private
+[2026-11-27 04:27:51.455] [info] [core] [t45016] Any360 d3d: GPU wait steps in 10 s: 342654976 (0 slept, 0 of them to the time-out)
+[2026-11-27 04:27:51.883] [info] [core] [t45016] Any360: the runtime's GPU: 52.6 FPS (VdSwap calls); frame times: median 18.39 ms (54.4 FPS), 10% low 38.4 FPS, 1% low 31.5 FPS; slowest frame 34.1 ms, 168 over 16.7 ms; 11537 MB private
+[2026-11-27 04:27:56.899] [info] [core] [t45016] Any360: the runtime's GPU: 45.1 FPS (VdSwap calls); frame times: median 21.40 ms (46.7 FPS), 10% low 34.3 FPS, 1% low 27.7 FPS; slowest frame 38.7 ms, 193 over 16.7 ms; 11924 MB private
+[2026-11-27 04:28:01.453] [info] [core] [t45016] Any360 d3d: GPU wait steps in 10 s: 340561920 (0 slept, 0 of them to the time-out)
+[2026-11-27 04:28:01.903] [info] [core] [t45016] Any360: the runtime's GPU: 63.9 FPS (VdSwap calls); frame times: median 11.42 ms (87.6 FPS), 10% low 36.8 FPS, 1% low 30.8 FPS; slowest frame 38.4 ms, 136 over 16.7 ms; 12194 MB private
+[2026-11-27 04:28:06.906] [info] [core] [t45016] Any360: the runtime's GPU: 103.1 FPS (VdSwap calls); frame times: median 8.86 ms (112.9 FPS), 10% low 82.9 FPS, 1% low 47.3 FPS; slowest frame 22.8 ms, 24 over 16.7 ms; 12254 MB private
+[2026-11-27 04:28:11.453] [info] [core] [t45016] Any360 d3d: GPU wait steps in 10 s: 313008128 (0 slept, 0 of them to the time-out)
+[2026-11-27 04:28:11.914] [info] [core] [t45016] Any360: the runtime's GPU: 69.9 FPS (VdSwap calls); frame times: median 13.71 ms (73.0 FPS), 10% low 50.1 FPS, 1% low 40.1 FPS; slowest frame 27.9 ms, 78 over 16.7 ms; 12525 MB private
+[2026-11-27 04:28:16.921] [info] [core] [t45016] Any360: the runtime's GPU: 71.5 FPS (VdSwap calls); frame times: median 13.24 ms (75.5 FPS), 10% low 52.9 FPS, 1% low 35.9 FPS; slowest frame 30.7 ms, 67 over 16.7 ms; 12787 MB private
+[2026-11-27 04:28:21.453] [info] [core] [t45016] Any360 d3d: GPU wait steps in 10 s: 334942208 (0 slept, 0 of them to the time-out)
+[2026-11-27 04:28:21.942] [info] [core] [t45016] Any360: the runtime's GPU: 58.2 FPS (VdSwap calls); frame times: median 15.99 ms (62.5 FPS), 10% low 40.2 FPS, 1% low 30.4 FPS; slowest frame 39.7 ms, 131 over 16.7 ms; 13092 MB private
+[2026-11-27 04:28:26.961] [info] [core] [t45016] Any360: the runtime's GPU: 51.0 FPS (VdSwap calls); frame times: median 19.09 ms (52.4 FPS), 10% low 36.0 FPS, 1% low 28.1 FPS; slowest frame 40.7 ms, 171 over 16.7 ms; 13384 MB private
+[2026-11-27 04:28:31.455] [info] [core] [t45016] Any360 d3d: GPU wait steps in 10 s: 345624576 (0 slept, 0 of them to the time-out)
+[2026-11-27 04:28:31.965] [info] [core] [t45016] Any360: the runtime's GPU: 42.8 FPS (VdSwap calls); frame times: median 22.95 ms (43.6 FPS), 10% low 32.4 FPS, 1% low 26.5 FPS; slowest frame 40.0 ms, 186 over 16.7 ms; 13714 MB private
+[2026-11-27 04:28:36.985] [info] [core] [t45016] Any360: the runtime's GPU: 52.0 FPS (VdSwap calls); frame times: median 18.26 ms (54.8 FPS), 10% low 38.2 FPS, 1% low 32.0 FPS; slowest frame 33.1 ms, 161 over 16.7 ms; 14066 MB private
+[2026-11-27 04:28:41.453] [info] [core] [t45016] Any360 d3d: GPU wait steps in 10 s: 344973312 (0 slept, 0 of them to the time-out)
+[2026-11-27 04:28:41.989] [info] [core] [t45016] Any360: the runtime's GPU: 58.5 FPS (VdSwap calls); frame times: median 16.51 ms (60.6 FPS), 10% low 42.1 FPS, 1% low 35.4 FPS; slowest frame 30.6 ms, 144 over 16.7 ms; 14367 MB private
+[2026-11-27 04:28:47.008] [info] [core] [t45016] Any360: the runtime's GPU: 50.8 FPS (VdSwap calls); frame times: median 19.35 ms (51.7 FPS), 10% low 37.2 FPS, 1% low 28.4 FPS; slowest frame 37.8 ms, 175 over 16.7 ms; 14695 MB private
+[2026-11-27 04:28:49.086] [warning] [krnl] [t35808] __imp__XamUserCreateStatsEnumerator STUB
+[2026-11-27 04:28:51.453] [info] [core] [t45016] Any360 d3d: GPU wait steps in 10 s: 332931072 (0 slept, 0 of them to the time-out)
+[2026-11-27 04:28:52.016] [info] [core] [t45016] Any360: the runtime's GPU: 44.1 FPS (VdSwap calls); frame times: median 21.10 ms (47.4 FPS), 10% low 30.8 FPS, 1% low 19.7 FPS; slowest frame 50.9 ms, 169 over 16.7 ms; 15052 MB private
+[2026-11-27 04:28:57.042] [info] [core] [t45016] Any360: the runtime's GPU: 42.6 FPS (VdSwap calls); frame times: median 21.49 ms (46.5 FPS), 10% low 30.2 FPS, 1% low 23.3 FPS; slowest frame 46.5 ms, 197 over 16.7 ms; 15389 MB private
+[2026-11-27 04:29:01.453] [info] [core] [t45016] Any360 d3d: GPU wait steps in 10 s: 346083328 (0 slept, 0 of them to the time-out)
+[2026-11-27 04:29:02.047] [info] [core] [t45016] Any360: the runtime's GPU: 43.0 FPS (VdSwap calls); frame times: median 22.38 ms (44.7 FPS), 10% low 31.2 FPS, 1% low 23.8 FPS; slowest frame 43.6 ms, 185 over 16.7 ms; 15725 MB private
+[2026-11-27 04:29:07.063] [info] [core] [t45016] Any360: the runtime's GPU: 44.7 FPS (VdSwap calls); frame times: median 22.30 ms (44.9 FPS), 10% low 32.9 FPS, 1% low 25.9 FPS; slowest frame 43.8 ms, 180 over 16.7 ms; 16047 MB private
+[2026-11-27 04:29:11.453] [info] [core] [t45016] Any360 d3d: GPU wait steps in 10 s: 322355200 (0 slept, 0 of them to the time-out)
+[2026-11-27 04:29:12.065] [info] [core] [t45016] Any360: the runtime's GPU: 90.8 FPS (VdSwap calls); frame times: median 9.44 ms (105.9 FPS), 10% low 73.9 FPS, 1% low 33.1 FPS; slowest frame 43.4 ms, 43 over 16.7 ms; 16132 MB private
+[2026-11-27 04:29:17.067] [info] [core] [t45016] Any360: the runtime's GPU: 88.4 FPS (VdSwap calls); frame times: median 9.49 ms (105.3 FPS), 10% low 56.8 FPS, 1% low 34.9 FPS; slowest frame 34.9 ms, 50 over 16.7 ms; 16226 MB private
+[2026-11-27 04:29:21.455] [info] [core] [t45016] Any360 d3d: GPU wait steps in 10 s: 299700224 (0 slept, 0 of them to the time-out)
+[2026-11-27 04:29:22.093] [info] [core] [t45016] Any360: the runtime's GPU: 78.6 FPS (VdSwap calls); frame times: median 9.86 ms (101.4 FPS), 10% low 48.1 FPS, 1% low 33.3 FPS; slowest frame 40.3 ms, 80 over 16.7 ms; 16367 MB private
+[2026-11-27 04:29:27.098] [info] [core] [t45016] Any360: the runtime's GPU: 80.3 FPS (VdSwap calls); frame times: median 10.17 ms (98.4 FPS), 10% low 50.2 FPS, 1% low 31.5 FPS; slowest frame 41.0 ms, 62 over 16.7 ms; 16496 MB private
+[2026-11-27 04:29:31.453] [info] [core] [t45016] Any360 d3d: GPU wait steps in 10 s: 316772352 (0 slept, 0 of them to the time-out)
+[2026-11-27 04:29:32.103] [info] [core] [t45016] Any360: the runtime's GPU: 60.3 FPS (VdSwap calls); frame times: median 13.86 ms (72.1 FPS), 10% low 35.7 FPS, 1% low 23.3 FPS; slowest frame 46.6 ms, 115 over 16.7 ms; 16710 MB private
+[2026-11-27 04:29:37.118] [info] [core] [t45016] Any360: the runtime's GPU: 72.8 FPS (VdSwap calls); frame times: median 11.16 ms (89.6 FPS), 10% low 47.1 FPS, 1% low 27.1 FPS; slowest frame 43.9 ms, 89 over 16.7 ms; 16876 MB private
+[2026-11-27 04:29:41.454] [info] [core] [t45016] Any360 d3d: GPU wait steps in 10 s: 323121152 (0 slept, 0 of them to the time-out)
+[2026-11-27 04:29:42.129] [info] [core] [t45016] Any360: the runtime's GPU: 54.7 FPS (VdSwap calls); frame times: median 16.47 ms (60.7 FPS), 10% low 33.7 FPS, 1% low 24.0 FPS; slowest frame 45.6 ms, 134 over 16.7 ms; 17120 MB private
+[2026-11-27 04:29:47.142] [info] [core] [t45016] Any360: the runtime's GPU: 61.2 FPS (VdSwap calls); frame times: median 14.96 ms (66.9 FPS), 10% low 39.5 FPS, 1% low 27.8 FPS; slowest frame 38.7 ms, 124 over 16.7 ms; 17340 MB private
+[2026-11-27 04:29:51.453] [info] [core] [t45016] Any360 d3d: GPU wait steps in 10 s: 325623808 (0 slept, 0 of them to the time-out)
+[2026-11-27 04:29:52.145] [info] [core] [t45016] Any360: the runtime's GPU: 71.5 FPS (VdSwap calls); frame times: median 11.57 ms (86.4 FPS), 10% low 45.1 FPS, 1% low 28.7 FPS; slowest frame 42.8 ms, 75 over 16.7 ms; 17507 MB private
+[2026-11-27 04:29:57.160] [info] [core] [t45016] Any360: the runtime's GPU: 84.4 FPS (VdSwap calls); frame times: median 9.94 ms (100.7 FPS), 10% low 59.7 FPS, 1% low 33.9 FPS; slowest frame 40.5 ms, 45 over 16.7 ms; 17613 MB private
+[2026-11-27 04:30:01.453] [info] [core] [t45016] Any360 d3d: GPU wait steps in 10 s: 301842432 (0 slept, 0 of them to the time-out)
+[2026-11-27 04:30:02.166] [info] [core] [t45016] Any360: the runtime's GPU: 85.1 FPS (VdSwap calls); frame times: median 9.85 ms (101.6 FPS), 10% low 58.8 FPS, 1% low 38.3 FPS; slowest frame 34.2 ms, 47 over 16.7 ms; 17711 MB private
+[2026-11-27 04:30:07.184] [info] [core] [t45016] Any360: the runtime's GPU: 79.1 FPS (VdSwap calls); frame times: median 10.24 ms (97.7 FPS), 10% low 53.6 FPS, 1% low 34.6 FPS; slowest frame 38.9 ms, 63 over 16.7 ms; 17828 MB private
+[2026-11-27 04:30:11.453] [info] [core] [t45016] Any360 d3d: GPU wait steps in 10 s: 302284800 (0 slept, 0 of them to the time-out)
+[2026-11-27 04:30:12.193] [info] [core] [t45016] Any360: the runtime's GPU: 84.9 FPS (VdSwap calls); frame times: median 9.89 ms (101.1 FPS), 10% low 60.8 FPS, 1% low 33.6 FPS; slowest frame 36.7 ms, 40 over 16.7 ms; 17920 MB private
+[2026-11-27 04:30:17.204] [info] [core] [t45016] Any360: the runtime's GPU: 79.6 FPS (VdSwap calls); frame times: median 9.89 ms (101.1 FPS), 10% low 56.3 FPS, 1% low 28.8 FPS; slowest frame 113.1 ms, 55 over 16.7 ms; 18028 MB private
+[2026-11-27 04:30:21.453] [info] [core] [t45016] Any360 d3d: GPU wait steps in 10 s: 301977600 (0 slept, 0 of them to the time-out)
+[2026-11-27 04:30:22.207] [info] [core] [t45016] Any360: the runtime's GPU: 80.6 FPS (VdSwap calls); frame times: median 9.88 ms (101.2 FPS), 10% low 53.9 FPS, 1% low 23.0 FPS; slowest frame 50.5 ms, 53 over 16.7 ms; 18124 MB private

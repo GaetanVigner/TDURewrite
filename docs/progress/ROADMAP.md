@@ -1,6 +1,6 @@
 # Test Drive Unlimited: roadmap
 
-Generated on 2026-11-12 with [PROGRESS.md](PROGRESS.md). The rewrite is done when nothing of the Xbox 360 or of ReXGlue's runtime is left under the game: every system call on `any360::sys`, graphics on `any360::gfx`, Any360 as the host, and the game's code as portable C++. Steps are in working order; each lists what it still needs.
+Generated on 2026-11-27 with [PROGRESS.md](PROGRESS.md). The rewrite is done when nothing of the Xbox 360 or of ReXGlue's runtime is left under the game: every system call on `any360::sys`, graphics on `any360::gfx`, Any360 as the host, and the game's code as portable C++. Steps are in working order; each lists what it still needs.
 
 ## 1. System calls on any360::sys
 
@@ -18,7 +18,7 @@ Generated on 2026-11-12 with [PROGRESS.md](PROGRESS.md). The rewrite is done whe
 
 ## 2. Graphics on any360::gfx
 
-The title draws through `any360::gfx`: opt-in on `master`: `--any360_gpu=true` (`--any360_gpu_scale=2 --any360_gpu_msaa=4`, `--any360_gpu_vblank_hz=240` for up to 120 FPS); 83-115 FPS driving at 2x with 4x MSAA on an RTX 5070 Ti, against 54-85 for the runtime's GPU at 2x.
+The title draws through `any360::gfx`: opt-in on `master`: `--any360_gpu=true` (`--any360_gpu_scale=2 --any360_gpu_msaa=4`; `--any360_gpu_vblank_hz=1000` lifts the 30 FPS lock); uncapped, driving at scale 1 on an RTX 5070 Ti: 115 FPS (1% low 101), 3.3 GB private, against 72 FPS (1% low 34) and 17-19 GB growing for the runtime's GPU (2026-11-27, 5 launches each).
 
 Still to do: make it the default renderer (today ReXGlue's Xenos emulation is), then drop the emulated GPU from the build.
 
@@ -42,7 +42,7 @@ Shared by every title (Any360's own roadmap); the title follows once they land.
 | Any360 step | What | State |
 |---|---|---|
 | 11 | third and fourth titles (Test Drive Unlimited, Sonic 06) | partial: Test Drive Unlimited boots to its title screen with all eight groups on `any360::sys` and no call reaching the runtime; gameplay, saves and sound not checked yet; Sonic 06 not started |
-| 12 | paths no title took yet: `XMA*` decoding, STFS packages, several users, guide UIs, Live offline, xbdm | partial: 602 of 2,914 exports native with scenario tests, none of the 2,294 reference stubs sorted |
+| 12 | paths no title took yet: `XMA*` decoding, STFS packages, several users, guide UIs, Live offline, xbdm | partial: 850 of 2,914 exports native with scenario tests; the reference stubs sorted ([docs/SYS_STUBS.md](https://github.com/GaetanVigner/Any360/blob/main/docs/SYS_STUBS.md)): none left to implement, all 114 Xenia stubs too answered natively (avatars, media, profile and user, content, information, Kinect, settings and others, guide screens, modules, input, network and notifications, the SMC and the last ones) (2 object and module calls, 10 content, network, callback and thread look-up calls, 9 language, memory, Xapi, IPTV and LZX decompression calls, 24 cryptography and key calls, 14 Win32 forms, 19 XAM information calls, 11 kernel calls, 16 guide and Kinect calls and 17 profile calls done), 255 debug only, 1,799 never seen |
 | 13 | Any360's own host: XEX loader, address space, threads, guest dispatch, MMIO, devices | not started |
 | 14 | the platform layer: window, input, audio, presenter on Windows and Linux (Steam Deck) | partial: SDL3 audio output only |
 | 15 | graphics through `any360::gfx` only, no `rexgpu-xenos` | partial: three titles draw through `any360::gfx`, the GPU session's plan in [docs/GFX.md](https://github.com/GaetanVigner/Any360/blob/main/docs/GFX.md) |
@@ -87,7 +87,7 @@ Order of work: symbol recovery and library recognition first (they shrink this l
 
 ## 6. This title
 
-- Check the system binding in game past the title screen: a save loaded, driving, sound, the gamepad and its rumble, a long session; `--any360_sys_trace=true` logs any call that still reaches the runtime.
+- Give `XamUserCreateStatsEnumerator` a real enumerator (or the title's error path) so `XamEnumerate` and `NtClose` stop reaching the runtime with a null handle; then check sound, the gamepad's rumble and a long session in game.
 - Name what is left of the executable's library code: the ranges listed as not named in Any360's titles/tdu/modules.json (code shared with the other titles of unknown purpose, an XML parser, zlib, a JPEG path), then the game's own modules (Eden's ed* libraries carry their names in their strings).
 - More native replacements of library functions (the CRT's string routines next), each under the rule of Any360's docs/NATIVE_FUNCTIONS.md: a reference model, unit tests, a benchmark, then `--any360_xdk_verify=true` and `--any360_xdk_bench=true` in game.
 - A golden test target (guest sandbox) so rewritten game functions can be verified.
@@ -97,3 +97,5 @@ Order of work: symbol recovery and library recognition first (they shrink this l
 - A game thread spins at 90% of a core (`sub_826737B8`).
 - Frame captures only trigger with `--any360_gpu_vblank_hz=1000` (the command processor is never idle at a kick otherwise).
 - The intro videos once ran too fast above 60 Hz; not seen again since the video pacing fix.
+- With `--any360_gpu_vblank_hz=1000` the vertical blanks arrive about every 2 ms: the menus stop at 240 FPS (the runtime's GPU, `--vsync=false`, reaches 500); driving runs far below it.
+- The runtime's GPU (`--any360_gpu=false`) uncapped grows by ~4 GB of private memory a minute (18 GB after 4 minutes); Any360's GPU stays flat.

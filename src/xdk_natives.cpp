@@ -71,12 +71,15 @@ ANY360_XDK_BIND_WITH(826BA040, XAudioFill, 4096)
 // The self-test's cases of the replacements the game's runs do not call (any360_d3d_selftest): its recompiled code and
 // the replacement on generated inputs.
 #include "any360/host/xdk_cases.h"
+// _finite and _add_exp are not bound: their recompiled functions are the originals.
+extern "C" void sub_82654358(PPCContext& __restrict ctx, uint8_t* base);
+extern "C" void sub_8264C938(PPCContext& __restrict ctx, uint8_t* base);
 namespace {
 using namespace any360::host::rexglue::d3d;
-ANY360_D3D_CASE(crt_finite, "_finite", __imp__sub_82654358, CrtDoubleToR3<&any360::xdk::CrtFinite>);
+ANY360_D3D_CASE(crt_finite, "_finite", sub_82654358, CrtDoubleToR3<&any360::xdk::CrtFinite>);
 ANY360_D3D_CASE(crt_isnan, "_isnan", __imp__sub_82654378, CrtDoubleToR3<&any360::xdk::CrtIsnan>);
 ANY360_D3D_CASE(crt_sptype, "_sptype", __imp__sub_8264C998, CrtDoubleToR3<&any360::xdk::CrtSptype>);
-ANY360_D3D_CASE(crt_add_exp, "_add_exp", __imp__sub_8264C938, CrtAddExpCase);
+ANY360_D3D_CASE(crt_add_exp, "_add_exp", sub_8264C938, CrtAddExpCase);
 ANY360_D3D_CASE(crt_wcscmp, "wcscmp", __imp__sub_82783FC8, CrtWcscmpCase);
 ANY360_D3D_CASE(xaudio_fill_256, "XAudio fill 256", __imp__sub_826B9F70, XAudioFillCase<256>);
 ANY360_D3D_CASE(xaudio_fill_512, "XAudio fill 512", __imp__sub_826B9E38, XAudioFillCase<512>);
